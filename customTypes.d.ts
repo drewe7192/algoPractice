@@ -1,3 +1,9 @@
+type numberOrString = number | string
+
+interface ISortable {
+    value: numberOrString
+}
+
 interface IPerson {
     name: {
         first: string
@@ -6,4 +12,8 @@ interface IPerson {
     }
     age: number
     profession: string
+}
+
+interface Array<T> {
+    MergeSort(isAsc: boolean = true, collection?: Array<ISortable>): Array<T>
 }

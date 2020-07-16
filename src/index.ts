@@ -1,16 +1,40 @@
-type numberOrString = number | string
-
 const isNumberOrString = (passedValue: any) => typeof passedValue === 'string' || typeof passedValue === 'number'
 
-interface ISortable {
-    value: numberOrString
-}
 
+Array.prototype.MergeSort = function(isAsc: boolean = true, collection?: Array<ISortable>)
+{
+    if(collection === undefined) {
+        collection = this
+    }
+
+    if (collection.length === 1) return collection
+    const middleIndx = Math.floor(collection.length / 2);
+    const firstHalf = collection.MergeSort(isAsc, collection.slice(0, middleIndx));
+    const secondHalf = collection.MergeSort(isAsc, collection.slice(middleIndx));
+    const sortedArray: Array<ISortable> = [];
+  
+    let i = 0;
+    let j = 0;
+  
+    while (i < firstHalf.length && j < secondHalf.length) {
+        let check = isAsc 
+            ? firstHalf[i].value < secondHalf[j].value 
+            : firstHalf[i].value > secondHalf[j].value 
+
+        if (check) {
+            sortedArray.push(firstHalf[i++]);
+        } else {
+            sortedArray.push(secondHalf[j++]);
+        }
+    }
+    while (i < firstHalf.length) sortedArray.push(firstHalf[i++]);
+    while (j < secondHalf.length) sortedArray.push(secondHalf[j++]);
+    return sortedArray;
+}
 
 
 class CollectionSort
 {
-
     public static toISortable<T, K extends keyof T>(array: Array<T>, key: K) {
         if(!Array.isArray(array)) {
             throw "Can not perform operation in this"
@@ -28,38 +52,8 @@ class CollectionSort
                 value
             }
         })
-        /*
-        */
     }
 
-    MergeSort(array: Array<ISortable>, isAsc: boolean = true): Array<ISortable>
-    {
-        if (array.length === 1) return array;
-        const middleIndx = Math.floor(array.length / 2);
-        const firstHalf = this.MergeSort(array.slice(0, middleIndx), isAsc);
-        const secondHalf = this.MergeSort(array.slice(middleIndx), isAsc);
-        const sortedArray: Array<ISortable> = [];
-      
-        let i = 0;
-        let j = 0;
-      
-        while (i < firstHalf.length && j < secondHalf.length) {
-            let check = isAsc 
-                ? firstHalf[i].value < secondHalf[j].value 
-                : firstHalf[i].value > secondHalf[j].value 
-
-            if (check) {
-                sortedArray.push(firstHalf[i++]);
-            } else {
-                sortedArray.push(secondHalf[j++]);
-            }
-        }
-      
-        while (i < firstHalf.length) sortedArray.push(firstHalf[i++]);
-        while (j < secondHalf.length) sortedArray.push(secondHalf[j++]);
-     
-        return sortedArray;
-    }
 }
 
 const SamplePeople: Array<IPerson> = [
@@ -100,6 +94,5 @@ const SamplePeople: Array<IPerson> = [
 ]
 
 const PeopleSortable = CollectionSort.toISortable(SamplePeople, 'age') as Array<ISortable>
-const CollectionSortInstance = new CollectionSort()
-const _sorted = CollectionSortInstance.MergeSort(PeopleSortable, true)
+const _sorted = PeopleSortable.MergeSort(false)
 console.log(_sorted)
