@@ -1,98 +1,42 @@
-const isNumberOrString = (passedValue: any) => typeof passedValue === 'string' || typeof passedValue === 'number'
+import { PeopleCollection } from './Data/PeopleSample'
 
-
-Array.prototype.MergeSort = function(isAsc: boolean = true, collection?: Array<ISortable>)
-{
-    if(collection === undefined) {
-        collection = this
-    }
-
+// Adding to the Array Methods like pop, push, map, forEach... like this
+// this also works because I have added the types in file ---> customTypes.d.ts
+Array.prototype.MergeSort = function<T>(compareFn: (a: T, b: T) => boolean, collection?: Array<T>) {
+    if (collection === undefined) collection = this
     if (collection.length === 1) return collection
-    const middleIndx = Math.floor(collection.length / 2);
-    const firstHalf = collection.MergeSort(isAsc, collection.slice(0, middleIndx));
-    const secondHalf = collection.MergeSort(isAsc, collection.slice(middleIndx));
-    const sortedArray: Array<ISortable> = [];
-  
-    let i = 0;
-    let j = 0;
-  
-    while (i < firstHalf.length && j < secondHalf.length) {
-        let check = isAsc 
-            ? firstHalf[i].value < secondHalf[j].value 
-            : firstHalf[i].value > secondHalf[j].value 
 
-        if (check) {
-            sortedArray.push(firstHalf[i++]);
-        } else {
-            sortedArray.push(secondHalf[j++]);
-        }
+    // this is the middle index of the collection
+    // example Math.floor(5/2)      = Math.floor(2.5)    = 2
+    // example Math.floor(6/2)      = Math.floor(3)      = 3
+    const middleIndx = Math.floor(collection.length / 2)
+    // let collection = [1,2,3,4,5]
+
+    // this would be [1,2]
+    const collectionFirstHalf = collection.MergeSort(compareFn, collection.slice(0, middleIndx))
+    // this would be [3,4,5]
+    const collectionSecondHalf = collection.MergeSort(compareFn, collection.slice(middleIndx))
+
+    const sortedArray: Array<T> = []
+    // pointers*
+    let i = 0
+    let j = 0
+  
+    while (i < collectionFirstHalf.length && j < collectionSecondHalf.length) {
+        if (compareFn(collectionFirstHalf[i], collectionSecondHalf[j]))
+            sortedArray.push(collectionSecondHalf[j++])
+        else
+            sortedArray.push(collectionFirstHalf[i++])
     }
-    while (i < firstHalf.length) sortedArray.push(firstHalf[i++]);
-    while (j < secondHalf.length) sortedArray.push(secondHalf[j++]);
-    return sortedArray;
+    
+    while (i < collectionFirstHalf.length) sortedArray.push(collectionFirstHalf[i++])
+    while (j < collectionSecondHalf.length) sortedArray.push(collectionSecondHalf[j++])
+    return sortedArray
 }
 
-
-class CollectionSort
-{
-    public static toISortable<T, K extends keyof T>(array: Array<T>, key: K) {
-        if(!Array.isArray(array)) {
-            throw "Can not perform operation in this"
-        }
-        
-        return array.map(element => {
-            let value = element[key]
-            if(!isNumberOrString(value)) {
-                console.log(`this is the VALUE ----> ${value}`)
-                throw "Value must be number or string"
-            }
-
-            return {
-                ...element,
-                value
-            }
-        })
-    }
-
-}
-
-const SamplePeople: Array<IPerson> = [
-    {
-        name: {
-            first: 'Drew',
-            last: 'Sutherland'
-        },
-        age: 26,
-        profession: 'Developer'
-    },
-    {
-        name: {
-            first: 'Felipe',
-            last: 'Ferreira',
-            middle: "Dutra"
-        },
-        age: 31,
-        profession: 'Programmer'
-    },
-    {
-        name: {
-            first: 'Rebecca',
-            last: 'Rose',
-            middle: "Amos"
-        },
-        age: 31,
-        profession: 'Nurse Practicioner'
-    },
-    {
-        name: {
-            first: 'Sierra',
-            last: 'Applewhite',
-        },
-        age: 25,
-        profession: 'Web Developer'
-    }
-]
-
-const PeopleSortable = CollectionSort.toISortable(SamplePeople, 'age') as Array<ISortable>
-const _sorted = PeopleSortable.MergeSort(false)
-console.log(_sorted)
+// see file titled PeopleSample.ts to see how this data is brought over
+const peopleData = PeopleCollection.getSampleData()
+// asc order like this...
+const ASCsorted = peopleData.MergeSort((a,b) => a.age > b.age)
+const DESCsorted = peopleData.MergeSort((a,b) => a.age < b.age)
+console.log(DESCsorted)

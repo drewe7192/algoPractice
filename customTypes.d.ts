@@ -1,9 +1,8 @@
-type numberOrString = number | string
-
-interface ISortable {
-    value: numberOrString
+interface IName {
+    first: string
+    last: string
+    middle?: string
 }
-
 interface IPerson {
     name: {
         first: string
@@ -15,5 +14,5 @@ interface IPerson {
 }
 
 interface Array<T> {
-    MergeSort(isAsc: boolean = true, collection?: Array<ISortable>): Array<T>
+    MergeSort(compareFn: (a: T, b: T) => boolean, collection?: Array<T>): Array<T>
 }
