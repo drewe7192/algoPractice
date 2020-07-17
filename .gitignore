@@ -1,3 +1,4 @@
 dist
-yarm.lock
+yarn.lock
 package.json.lock
+DESCsorted
