@@ -1,4 +1,8 @@
 import { PeopleCollection } from './Data/PeopleSample'
+import { Logger } from './Utilities/Logger'
+
+// will clear at every bundle
+console.clear()
 
 // Adding to the Array Methods like pop, push, map, forEach... like this
 // this also works because I have added the types in file ---> customTypes.d.ts
@@ -37,6 +41,7 @@ Array.prototype.MergeSort = function<T>(compareFn: (a: T, b: T) => boolean, coll
 // see file titled PeopleSample.ts to see how this data is brought over
 const peopleData = PeopleCollection.getSampleData()
 // asc order like this...
-const ASCsorted = peopleData.MergeSort((a,b) => a.age > b.age)
+// const ASCsorted = peopleData.MergeSort((a,b) => a.age > b.age)
 const DESCsorted = peopleData.MergeSort((a,b) => a.age < b.age)
-console.log(DESCsorted)
+// console.log(JSON.stringify(DESCsorted, null, 2))
+Logger.Pretty(DESCsorted)
