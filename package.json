@@ -22,6 +22,7 @@
     "UncleFifi"
   ],
   "scripts": {
+    "dev": "nodemon",
     "bundle": "webpack",
     "start": "npm run bundle && npm run execute",
     "execute": "node ./dist/index.js"
@@ -32,7 +33,7 @@
   },
   "author": "Drew + unclefifi",
   "private": "true",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/drewe7192/algoPractice/issues"
   },
