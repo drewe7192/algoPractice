@@ -1,5 +1,6 @@
 import { PeopleCollection } from './Data/PeopleSample'
 import { Code } from './enums'
+import { LinkedList } from './datastructures/SLL'
 
 // quick overview of what program can do
 interface IProgramActions
@@ -34,18 +35,28 @@ export class Program implements IProgramActions
         const peopleData = PeopleCollection.getSampleData()
         // asc order like this...
         // const ASCsorted = peopleData.MergeSort((a,b) => a.age > b.age)
-        const DESCsorted = peopleData.MergeSort((a,b) => a.age < b.age)
-        console.PrettyLog(DESCsorted)
+        const DESCsorted = peopleData.mergeSort((a,b) => a.age < b.age)
+        console.prettyLog(DESCsorted)
     }
 
+    private _SLLCode():void 
+    {
+        const SLLInstance = LinkedList.createNewActions<IPerson>()
+        PeopleCollection.getFerreiraFamily().forEach(person => {
+            SLLInstance.push(person)
+        })
+        SLLInstance.printAllNodes()
+    }
+
+    // this function can only be called ONCE
     public Start(): void
     {
         this.StartCount++
-        
         if(this.StartCount > 1)
             throw "this function can only be called once"
         
-        if(this._Codes.has(Code.MergeSort)) this._MergeSortCode()
+        if(this._Codes.has(Code.MergeSort) || this._Codes.has(Code.All)) this._MergeSortCode()
+        if(this._Codes.has(Code.SLL) || this._Codes.has(Code.All)) this._SLLCode()
 
     }
 }

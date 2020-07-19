@@ -1,16 +1,25 @@
 // The Purpose of this class is to add functions to existing JS Objects
 // For Each new Object we will create a function - Example in Array, Console
 // then we call the function inside the create method
-export abstract class CustomPrototypes
+export abstract class AppSetup
 {
-    private static _ArrayPrototypes()
+    private static protoIsDefined(protoName: string, fromObject: string, proto?: Function):void
+    {
+        if(typeof proto === 'function')
+            throw 'the following has already been defined.'
+        else    
+            console.dir(`now defining ${protoName} from ${fromObject} Object`)
+    }
+
+    private static _ArrayPrototypes():void
     {
         // Adding to the Array Methods like pop, push, map, forEach... like this
         // this also works because I have added the types in file ---> customTypes.d.ts
         /**
         * Will sort collection with predicate passed in.
         */
-        Array.prototype.MergeSort = function<T>(compareFn: (a: T, b: T) => boolean, collection?: Array<T>) {
+        this.protoIsDefined('mergeSort', 'Array', Array.prototype.mergeSort)
+        Array.prototype.mergeSort = function<T>(compareFn: (a: T, b: T) => boolean, collection?: Array<T>) {
             if (collection === undefined) collection = this
             if (collection.length === 1) return collection
 
@@ -21,9 +30,9 @@ export abstract class CustomPrototypes
             // let collection = [1,2,3,4,5]
 
             // this would be [1,2]
-            const collectionFirstHalf = collection.MergeSort(compareFn, collection.slice(0, middleIndx))
+            const collectionFirstHalf = collection.mergeSort(compareFn, collection.slice(0, middleIndx))
             // this would be [3,4,5]
-            const collectionSecondHalf = collection.MergeSort(compareFn, collection.slice(middleIndx))
+            const collectionSecondHalf = collection.mergeSort(compareFn, collection.slice(middleIndx))
 
             const sortedArray: Array<T> = []
             // pointers*
@@ -43,24 +52,17 @@ export abstract class CustomPrototypes
         }
     }
 
-    private static _ConsolePrototypes()
+    private static _ConsolePrototypes():void
     {
-        console.PrettyLog = function<T>(fancyObject: T): void {
+        this.protoIsDefined('prettyLog', 'console', console.prettyLog)
+        console.prettyLog = function<T>(fancyObject: T): void {
             console.log(JSON.stringify(fancyObject, null, 2))
         }
     }
 
-    public static create(): Promise<boolean>
+    public static prototypesDeclaration():void
     {
-        return new Promise((res, rej) => {
-            try {
-                this._ArrayPrototypes()
-                this._ConsolePrototypes()
-                res(true)
-            } catch (error) {
-                console.error(error)
-                rej(false)
-            }
-        })
+        this._ArrayPrototypes()
+        this._ConsolePrototypes()   
     }
 }
