@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+html, body {
+    background: crimson;
+    margin: 0;
+    padding: 0;
+}
+
+.flex-item {
+    display: flex;
+}
+
+.white-text {
+    color: white;
+}
+
+.largest {
+    font-size: 40px;
+}
+
+.button {
+    background: ghostwhite;
+    border-radius: 10px;
+    padding: 10px 75px;
+    margin: 10px 25px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: aquamarine;
+}

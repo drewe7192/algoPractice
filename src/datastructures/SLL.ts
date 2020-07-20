@@ -25,7 +25,7 @@
 interface ISLLNode<T>
 {
     value: T
-    Next: nullable<ISLLNode<T>>
+    next: nullable<ISLLNode<T>>
 }
 
 interface ISLLAttributes<T>
@@ -44,11 +44,11 @@ interface ISLLActions<T>
 
 class SLLNode<T> implements ISLLNode<T> {
     public value: T
-    public Next: nullable<ISLLNode<T>>
+    public next: nullable<ISLLNode<T>>
     constructor(value: T, next: nullable<ISLLNode<T>> = null)
     {
         this.value = value
-        this.Next = next
+        this.next = next
     }
 }
 
@@ -90,7 +90,7 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
         } else {
             const currentTail = this.tail as ISLLNode<T>
             // const newTail = new SLLNode<T>(value)
-            currentTail.Next = newNode
+            currentTail.next = newNode
             this.tail = newNode
         }
     }
@@ -100,8 +100,9 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
      */
     public printAllNodes(): void
     {
-        this.toArray().forEach(node => {
-            console.prettyLog(node)
+        this.toArray().forEach((node) => {
+            console.log(node)
+            // console.prettyLog(node)
         })
     }
 
@@ -111,10 +112,10 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
         if(this.count === 0) return collection
         let displayNode = this.head
         collection.push((displayNode  as ISLLNode<T>).value)
-        if(displayNode && displayNode.Next) displayNode = displayNode.Next
+        if(displayNode && displayNode.next) displayNode = displayNode.next
         while(displayNode !== null) {
             if(displayNode !== null) collection.push(displayNode.value)
-            displayNode = displayNode.Next
+            displayNode = displayNode.next
         }
         return collection
     }

@@ -1,21 +1,19 @@
 import { Program } from './programLogic'
-import { Code } from './enums'
 import { AppSetup } from './prototypes'
+import './css/index.css'
 
 // will clear at every bundle
 console.clear()
 
 // Code that needs to run after prototypes have been declared
-function start()
-{
-    // what I want to display on the console is dependant on what gets passed in...
-    const consoleDisplay: Array<Code> = [
-        Code.SLL
-    ]
-
-    // starting the app like this...
-    Program.getAppInstance(consoleDisplay).Start()
-}
-
 AppSetup.prototypesDeclaration()
-start()
+
+const actionsDivElement: HTMLElement = document.getElementById('actions') as HTMLDivElement
+Program.getAppInstance().getAppSquares().forEach(n => {
+    const sllDiv = document.createElement('div')
+    sllDiv.classList.add('largest')
+    sllDiv.classList.add('button')
+    sllDiv.onclick = () => n.func()
+    sllDiv.textContent = n.title
+    actionsDivElement.appendChild(sllDiv)
+})

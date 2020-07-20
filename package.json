@@ -3,29 +3,12 @@
   "version": "1.0.0",
   "description": "yay for ALGORITHMS!",
   "main": "index.js",
-  "nodemonConfig": {
-    "ignore": [
-      "**/*.test.ts",
-      "**/*.spec.ts",
-      ".git",
-      "node_modules"
-    ],
-    "watch": [
-      "./customTypes.d.ts",
-      "src"
-    ],
-    "exec": "npm start",
-    "ext": "ts"
-  },
   "contributors": [
     "drewe7192",
     "UncleFifi"
   ],
   "scripts": {
-    "dev": "nodemon",
-    "bundle": "webpack",
-    "start": "npm run bundle && npm run execute",
-    "execute": "node ./dist/index.js"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -40,12 +23,15 @@
   "homepage": "https://github.com/drewe7192/algoPractice#readme",
   "devDependencies": {
     "@types/node": "^14.0.23",
-    "@types/nodemon": "^1.19.0",
-    "nodemon": "^2.0.4",
+    "html-webpack-plugin": "^4.3.0",
     "ts-loader": "^8.0.1",
-    "ts-node": "^8.10.2",
     "typescript": "^3.9.7",
     "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "css-loader": "^3.6.0",
+    "style-loader": "^1.2.1"
   }
 }
