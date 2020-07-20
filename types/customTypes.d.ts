@@ -25,11 +25,13 @@ interface IPerson {
     familyName: FamilyName
 }
 
-interface Employee extends IPerson {
+interface IEmployee extends IPerson {
     sallary: number
     profession: string
     email: string
 }
+
+type EmployeeKeys = keyof Employee
 
 interface Array<T> {
     mergeSort(compareFn: (a: T, b: T) => boolean, collection?: Array<T>): Array<T>

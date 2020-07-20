@@ -1,11 +1,19 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { FamilyName } from './../enums'
-import { debug } from 'console'
+
 interface IMergeSortPageProps {}
 export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProps) => {
 
 
-    const data: Array<Employee> = [
+    useEffect(() => {
+        setTableData(
+            tableData.slice()
+                .mergeSort((a, b) => a.sallary < b.sallary)
+        )
+    },
+    [])
+
+    const data: Array<IEmployee> = [
         {
             name: {
                 first: 'Felipe',
@@ -14,7 +22,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 31,
             familyName: FamilyName.Ferreira,
             profession: 'programmer',
-            sallary: 69999.99,
+            sallary: 69999,
             email: 'felipesemail@gmail.com'
         },
         {
@@ -25,7 +33,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 31,
             familyName: FamilyName.Ferreira,
             profession: 'Nurse Practicioner',
-            sallary: 999999.99,
+            sallary: 99999,
             email: 'rebeccasemail@gmail.com'
         },
         {
@@ -52,7 +60,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
         },
     ]
 
-    const [tableData, setTableData] = useState<Array<Employee>>(data)
+    const [tableData, setTableData] = useState<Array<IEmployee>>(data)
 
     const renderTableHead = (Headers: Array<string>) => {
         return <div className="flex-item tableHead">
@@ -72,9 +80,6 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             </div>
     }
 
-    const someNumber: Number = 1000
-    debugger
-    const moneyBaby = someNumber.toCurrency()
 
     return <div className="table">
         {renderTableHead(['Name', 'Email', 'Salary', 'Profession'])}
