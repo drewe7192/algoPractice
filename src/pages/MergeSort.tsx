@@ -1,113 +1,101 @@
 import React, { FC, useState, useEffect } from 'react'
 import { FamilyName } from './../enums'
+import { PeopleCollection } from './../Data/PeopleSample'
+
+type EmployeeKeys = keyof IEmployee
 
 interface IHeader {
     display: string,
-    key: keyof IEmployee,
-    compareCb: (a: IEmployee, b: IEmployee) => boolean,
+    key: EmployeeKeys,
 }
 
-interface IMergeSortPageProps {}
+enum sortOrder {
+    ASC = 0,
+    DESC = 1
+}
+interface ISortState {
+    key: EmployeeKeys
+    sortOrder: sortOrder
+}
+
+interface IMergeSortPageProps {
+    defaultSort?: EmployeeKeys
+}
 
 export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProps) => {
 
 
-    const sortTable = (compareFn: (a: IEmployee, b: IEmployee) => boolean) => {
-        setTableData(
-            tableData.slice()
-                .mergeSort(compareFn)
-        )        
+    const sortTable = (key: EmployeeKeys) => {
+
+        let newSortOrder: sortOrder = sortOrder.ASC;
+        if(sortState!==null) {
+            const c = (sortState as ISortState)
+            if(c.key === key) {
+                if(c.sortOrder === sortOrder.ASC)
+                    newSortOrder=sortOrder.DESC
+            }
+        }
+
+        // default
+        let compareCb = (a: IEmployee, b: IEmployee) => a[key] < b[key]
+        const isName = key === 'name'
+        if(isName) {
+            compareCb = (a: IEmployee, b: IEmployee) => a.name.first < b.name.first
+        } 
+        if(newSortOrder === sortOrder.DESC) {
+            compareCb = isName 
+                ? (a: IEmployee, b: IEmployee) => b.name.first < a.name.first 
+                : (a: IEmployee, b: IEmployee) => b[key] < a[key]
+        }
+
+        // changing the sortOrder like this...
+        setSortState({key, sortOrder: newSortOrder})
+        // changing the indexes order with the following
+        setTableData(tableData.slice().mergeSort(compareCb))
     }
 
-
     useEffect(() => {
-        sortTable((a, b) => a.salary < b.salary)
+        if(props.defaultSort)
+            sortTable(props.defaultSort)
     },
     [])
 
-    const data: Array<IEmployee> = [
-        {
-            name: {
-                first: 'Felipe',
-                last: 'Ferreira'
-            },
-            age: 31,
-            familyName: FamilyName.Ferreira,
-            profession: 'programmer',
-            salary: 69999,
-            email: 'felipesemail@gmail.com'
-        },
-        {
-            name: {
-                first: 'Rebecca',
-                last: 'Amos'
-            },
-            age: 31,
-            familyName: FamilyName.Ferreira,
-            profession: 'Nurse Practicioner',
-            salary: 99999,
-            email: 'rebeccasemail@gmail.com'
-        },
-        {
-            name: {
-                first: 'Drew',
-                last: 'Sutherland'
-            },
-            age: 26,
-            familyName: FamilyName.Sutherland,
-            profession: 'entrepreneur',
-            salary: 1000000,
-            email: 'drewsemail@gmail.com'
-        },
-        {
-            name: {
-                first: 'Bill',
-                last: 'Gates'
-            },
-            age: 64,
-            familyName: FamilyName.Gates,
-            profession: 'Philanthropist',
-            salary: 11500000000,
-            email: 'billssemail@gmail.com'
-        },
-    ]
+    const [tableData, setTableData] = useState<Array<IEmployee>>(PeopleCollection.getEmployeeData())
+    const [sortState, setSortState] = useState<nullable<ISortState>>(null)
 
-    const [tableData, setTableData] = useState<Array<IEmployee>>(data)
-
-    const headerData = [
-        'Name', 
-        'Email', 
-        'Salary', 
-        'Profession'
-    ]
-
-    const _headerData: Array<IHeader> = [
+    const headerData: Array<IHeader> = [
         {
             display: 'Name',
-            compareCb:  (a: IEmployee, b: IEmployee) => a.name.first < b.name.first,
             key: 'name',
         },
         {
             display: 'Email',
             key: 'email',
-            compareCb:  (a: IEmployee, b: IEmployee) => a.email < b.email
         },
         {
             display: 'Salary',
             key: 'salary',
-            compareCb:  (a: IEmployee, b: IEmployee) => a.salary < b.salary
         },
         {
             display: 'Profession',
             key: 'profession',
-            compareCb:  (a: IEmployee, b: IEmployee) => a.profession < b.profession
         }
-        // 'Profession'
     ]
 
     const renderTableHead = (Headers: Array<IHeader>) => {
-        return <div className="flex-item tableHead">
-            {Headers.map(h => <div className="stretched centeredAligned" onClick={() => {sortTable(h.compareCb)}} key={h.key}>{h.display}</div>)}
+        let currentSort: nullable<EmployeeKeys> = null
+        if(sortState!==null) {
+            currentSort = sortState.key
+        }
+        return <div className="flex-item tableHead noselect">
+            {Headers.map(h => {
+                const { key, display } = h
+                const isSelected = key === currentSort
+                let className = "stretched centeredAligned"
+                if(isSelected) className+=" active"
+                const onClick = () => sortTable(key)
+                return <div className={className} onClick={onClick} key={key}>{display}</div>
+            })}
         </div>
     }
 
@@ -125,9 +113,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
 
 
     return <div className="table">
-        {renderTableHead(_headerData)}
+        {renderTableHead(headerData)}
         {renderTableBody()}
     </div>
-    // return <div>DISPLAY THAT YOU CAN USE MERGE SORT HERE!!!</div>
-
 }

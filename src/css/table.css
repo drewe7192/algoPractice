@@ -5,7 +5,17 @@
     text-transform: uppercase;
 }
 
+
+.flex-item.tableHead {
+    cursor: pointer;
+}
+
 .tableBody .stretched.centeredAligned {
     background: paleturquoise;
     padding: 10px 0;
+
+}
+
+.tableHead > .stretched.centeredAligned.active {
+    background: aliceblue;
 }
