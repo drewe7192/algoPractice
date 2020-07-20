@@ -4,9 +4,9 @@ import { LinkedList } from './datastructures/SLL'
 // quick overview of what program can do
 interface IProgramActions
 {
-    // SLLCode():void
-    // mergeSortCode():void
-    getAppSquares(): Array<IAppSquare>
+    SLLCode():void
+    mergeSortCode():void
+    // getAppSquares(): Array<IAppSquare>
 }
 
 interface IAppSquare {

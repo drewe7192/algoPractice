@@ -1,8 +1,18 @@
 // The Purpose of this class is to add functions to existing JS Objects
 // For Each new Object we will create a function - Example in Array, Console
 // then we call the function inside the create method
-export class prototypesBootstrap
+class prototypesBootstrap
 {
+    private static protoIsDefined(protoName: string, fromObject: string, proto?: Function):void
+    {
+        /*
+        if(typeof proto === 'function')
+            throw 'the following has already been defined.'
+        else    
+        */
+        console.dir(`now defining ${protoName} from ${fromObject} Object`)
+    }
+
     private static _ArrayPrototypes():void
     {
         // Adding to the Array Methods like pop, push, map, forEach... like this
@@ -10,6 +20,7 @@ export class prototypesBootstrap
         /**
         * Will sort collection with predicate passed in.
         */
+        this.protoIsDefined('mergeSort', 'Array', Array.prototype.mergeSort)
         Array.prototype.mergeSort = function<T>(compareFn: (a: T, b: T) => boolean, collection?: Array<T>) {
             if (collection === undefined) collection = this
             if (collection.length === 1) return collection
@@ -45,6 +56,7 @@ export class prototypesBootstrap
 
     private static _ConsolePrototypes():void
     {
+        this.protoIsDefined('prettyLog', 'console', console.prettyLog)
         console.prettyLog = function<T>(fancyObject: T): void {
             console.log(JSON.stringify(fancyObject, null, 2))
         }
