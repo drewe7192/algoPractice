@@ -5,6 +5,7 @@ import { App } from './components/App'
 
 // CSS files referenced here
 import './css/index.css'
+import './css/table.css'
 
 // setting up our prototypes here
 prototypesBootstrap.setUp()

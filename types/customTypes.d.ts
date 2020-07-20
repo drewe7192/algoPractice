@@ -31,12 +31,14 @@ interface Employee extends IPerson {
     email: string
 }
 
-/* these function(s) is defined in index.ts in the bootstrapPrototypes IFFE */
 interface Array<T> {
-    /* Will sort collection with predicate passed in */
     mergeSort(compareFn: (a: T, b: T) => boolean, collection?: Array<T>): Array<T>
 }
 
 interface Console {
     prettyLog<T>(fancyObject: T): void
+}
+
+interface Number {
+    toCurrency: () => string;
 }

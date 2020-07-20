@@ -50,10 +50,21 @@ export class prototypesBootstrap
         }
     }
 
+    private static _NumberPrototypes():void
+    {
+        Number.prototype.toCurrency = function()
+        {
+            return new Intl.NumberFormat('en-US',
+                { style: "currency", currency: "USD", maximumFractionDigits: 2, minimumFractionDigits: 0 },
+            ).format(this as number)
+        }
+    }
+
     public static setUp():void
     {
         this._ArrayPrototypes()
         this._ConsolePrototypes()   
+        this._NumberPrototypes()
     }
 }
 

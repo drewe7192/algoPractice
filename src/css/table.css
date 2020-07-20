@@ -1,0 +1,11 @@
+.tableHead > .stretched.centeredAligned {
+    background: cornflowerblue;
+    padding: 10px;
+    font-size: 150%;
+    text-transform: uppercase;
+}
+
+.tableBody .stretched.centeredAligned {
+    background: paleturquoise;
+    padding: 10px 0;
+}

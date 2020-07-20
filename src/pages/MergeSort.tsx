@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import { FamilyName } from './../enums'
+import { debug } from 'console'
 interface IMergeSortPageProps {}
 export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProps) => {
 
@@ -13,7 +14,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 31,
             familyName: FamilyName.Ferreira,
             profession: 'programmer',
-            sallary: 70000,
+            sallary: 69999.99,
             email: 'felipesemail@gmail.com'
         },
         {
@@ -24,7 +25,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 31,
             familyName: FamilyName.Ferreira,
             profession: 'Nurse Practicioner',
-            sallary: 105000,
+            sallary: 999999.99,
             email: 'rebeccasemail@gmail.com'
         },
         {
@@ -65,11 +66,15 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
                     <div className="flex-item stretched" key={t.name.first+"_"+t.name.last}>
                         <div className="stretched centeredAligned">{t.name.first+" "+t.name.last}</div>
                         <div className="stretched centeredAligned">{t.email}</div>
-                        <div className="stretched centeredAligned">{t.sallary}</div>
+                        <div className="stretched centeredAligned">{t.sallary.toCurrency()}</div>
                         <div className="stretched centeredAligned">{t.profession}</div>
                     </div>)}
             </div>
     }
+
+    const someNumber: Number = 1000
+    debugger
+    const moneyBaby = someNumber.toCurrency()
 
     return <div className="table">
         {renderTableHead(['Name', 'Email', 'Salary', 'Profession'])}
