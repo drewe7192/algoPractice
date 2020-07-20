@@ -1,22 +1,34 @@
 import React, { FC } from 'react'
-import { Program } from './../programLogic'
+import { MergeSortPage } from './../pages/MergeSort'
+import { SLLPage } from './../pages/SLLPage'
+import {
+    HashRouter as Router,
+    Switch,
+    Route,
+    NavLink
+  } from "react-router-dom";
 
-interface IAppProps {
-    userName: string;
-    lang: string;
-}
+interface IAppProps {}
 
 export const App:FC<IAppProps> = (props: IAppProps) => {
-    const { lang, userName } = props
-    const _codeRef = Program.getAppInstance()
-
-    return <div>
-        <h1>Click a button <br/> and Check your Console</h1>
-        <div className="flex-item">
-            <div className="button" onClick={_codeRef.mergeSortCode}>Merge Sort Code</div>
-            <div className="button" onClick={_codeRef.SLLCode}>SLL Code</div>
+    return <Router>
+        <div>
+            <div className="flex-item wrapped space-evenly darkBackground">
+                <NavLink activeClassName="selected" to="/MergeSort" className="bordered button noDecoration">Merge Sort</NavLink>
+                <NavLink activeClassName="selected" to="/SLL" className="bordered button noDecoration">SLL Code</NavLink>
+            </div>
         </div>
-
-    </div>
+        <Switch>
+          <Route path="/MergeSort">
+              <MergeSortPage/>
+          </Route>
+          <Route path="/SLL">
+              <SLLPage/>
+          </Route>
+          <Route exact path="/">
+              <h1>HOME</h1>
+          </Route>
+        </Switch>
+    </Router>
 
 }

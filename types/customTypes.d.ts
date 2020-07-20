@@ -10,7 +10,8 @@ interface IName {
 enum FamilyName {
     Ferreira = 0,
     Sutherland = 1,
-    Applewhite = 2
+    Applewhite = 2,
+    Gates = 3,
 }
 
 interface IPerson {
@@ -20,8 +21,14 @@ interface IPerson {
         middle?: string
     }
     age: number
-    profession: string,
+    // profession: string,
     familyName: FamilyName
+}
+
+interface Employee extends IPerson {
+    sallary: number
+    profession: string
+    email: string
 }
 
 /* these function(s) is defined in index.ts in the bootstrapPrototypes IFFE */

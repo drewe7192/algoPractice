@@ -2,14 +2,13 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { prototypesBootstrap } from './prototypes'
 import { App } from './components/App'
-// import { Program } from './programLogic'
 
-// CSS inject like this
+// CSS files referenced here
 import './css/index.css'
 
-
+// setting up our prototypes here
 prototypesBootstrap.setUp()
-// const sample = Program.getAppInstance()
-// sample.SLLCode()
-// sample.mergeSortCode()
-ReactDOM.render(<App userName="Developer" lang="TypeScript" />,document.getElementById("root"))
+
+// React Setup here
+const injectArea = document.getElementById("root")
+ReactDOM.render(<App/>,injectArea)
