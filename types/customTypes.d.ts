@@ -26,7 +26,7 @@ interface IPerson {
 }
 
 interface IEmployee extends IPerson {
-    sallary: number
+    salary: number
     profession: string
     email: string
 }

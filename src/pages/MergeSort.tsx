@@ -1,15 +1,27 @@
 import React, { FC, useState, useEffect } from 'react'
 import { FamilyName } from './../enums'
 
+interface IHeader {
+    display: string,
+    key: keyof IEmployee,
+    compareCb: (a: IEmployee, b: IEmployee) => boolean,
+}
+
 interface IMergeSortPageProps {}
+
 export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProps) => {
 
 
-    useEffect(() => {
+    const sortTable = (compareFn: (a: IEmployee, b: IEmployee) => boolean) => {
         setTableData(
             tableData.slice()
-                .mergeSort((a, b) => a.sallary < b.sallary)
-        )
+                .mergeSort(compareFn)
+        )        
+    }
+
+
+    useEffect(() => {
+        sortTable((a, b) => a.salary < b.salary)
     },
     [])
 
@@ -22,7 +34,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 31,
             familyName: FamilyName.Ferreira,
             profession: 'programmer',
-            sallary: 69999,
+            salary: 69999,
             email: 'felipesemail@gmail.com'
         },
         {
@@ -33,7 +45,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 31,
             familyName: FamilyName.Ferreira,
             profession: 'Nurse Practicioner',
-            sallary: 99999,
+            salary: 99999,
             email: 'rebeccasemail@gmail.com'
         },
         {
@@ -44,7 +56,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 26,
             familyName: FamilyName.Sutherland,
             profession: 'entrepreneur',
-            sallary: 1000000,
+            salary: 1000000,
             email: 'drewsemail@gmail.com'
         },
         {
@@ -55,16 +67,47 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             age: 64,
             familyName: FamilyName.Gates,
             profession: 'Philanthropist',
-            sallary: 11500000000,
+            salary: 11500000000,
             email: 'billssemail@gmail.com'
         },
     ]
 
     const [tableData, setTableData] = useState<Array<IEmployee>>(data)
 
-    const renderTableHead = (Headers: Array<string>) => {
+    const headerData = [
+        'Name', 
+        'Email', 
+        'Salary', 
+        'Profession'
+    ]
+
+    const _headerData: Array<IHeader> = [
+        {
+            display: 'Name',
+            compareCb:  (a: IEmployee, b: IEmployee) => a.name.first < b.name.first,
+            key: 'name',
+        },
+        {
+            display: 'Email',
+            key: 'email',
+            compareCb:  (a: IEmployee, b: IEmployee) => a.email < b.email
+        },
+        {
+            display: 'Salary',
+            key: 'salary',
+            compareCb:  (a: IEmployee, b: IEmployee) => a.salary < b.salary
+        },
+        {
+            display: 'Profession',
+            key: 'profession',
+            compareCb:  (a: IEmployee, b: IEmployee) => a.profession < b.profession
+        }
+        // 'Profession'
+    ]
+
+    const renderTableHead = (Headers: Array<IHeader>) => {
         return <div className="flex-item tableHead">
-            {Headers.map(h => <div className="stretched centeredAligned" key={h}>{h}</div>)}
+            {Headers.map(h => <div className="stretched centeredAligned" onClick={() => {sortTable(h.compareCb)}} key={h.key}>{h.display}</div>)}
         </div>
     }
 
@@ -74,7 +117,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
                     <div className="flex-item stretched" key={t.name.first+"_"+t.name.last}>
                         <div className="stretched centeredAligned">{t.name.first+" "+t.name.last}</div>
                         <div className="stretched centeredAligned">{t.email}</div>
-                        <div className="stretched centeredAligned">{t.sallary.toCurrency()}</div>
+                        <div className="stretched centeredAligned">{t.salary.toCurrency()}</div>
                         <div className="stretched centeredAligned">{t.profession}</div>
                     </div>)}
             </div>
@@ -82,7 +125,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
 
 
     return <div className="table">
-        {renderTableHead(['Name', 'Email', 'Salary', 'Profession'])}
+        {renderTableHead(_headerData)}
         {renderTableBody()}
     </div>
     // return <div>DISPLAY THAT YOU CAN USE MERGE SORT HERE!!!</div>
