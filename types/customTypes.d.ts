@@ -1,5 +1,10 @@
 type nullable<T> = null | T
 
+declare module "*.png" {
+    const value: string;
+    export default value;
+  }
+
 interface IName {
     first: string
     last: string

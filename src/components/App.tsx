@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 import { MergeSortPage } from './../pages/MergeSort'
 import { SLLPage } from './../pages/SLLPage'
+import HomePage from './../pages/Root'
+
 import {
     HashRouter as Router,
     Switch,
@@ -26,7 +28,7 @@ export const App:FC<IAppProps> = (props: IAppProps) => {
               <SLLPage/>
           </Route>
           <Route exact path="/">
-              <h1>HOME</h1>
+              <HomePage/>
           </Route>
         </Switch>
     </Router>

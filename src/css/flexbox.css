@@ -1,0 +1,26 @@
+
+.flex-item {
+    display: flex;
+}
+
+.flex-item.vertical {
+    flex-direction: column;
+}
+
+.flex-item.wrapped {
+    flex-wrap: wrap;
+}
+
+.flex-item.space-evenly{
+    justify-content: space-evenly;
+}
+
+.flex-item > .stretched{
+    flex: 1;
+}
+
+.flex-item.centered {
+    justify-content: center;
+    align-items: center;
+}
+

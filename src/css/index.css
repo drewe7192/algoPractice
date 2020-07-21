@@ -26,25 +26,6 @@ html, body, #root {
     overflow: hidden;
 }
 
-.flex-item {
-    display: flex;
-}
-
-.flex-item.vertical {
-    flex-direction: column;
-}
-
-.flex-item.wrapped {
-    flex-wrap: wrap;
-}
-
-.flex-item.space-evenly{
-    justify-content: space-evenly;
-}
-
-.flex-item > .stretched{
-    flex: 1;
-}
 
 .white-text {
     color: white;
@@ -89,4 +70,15 @@ html, body, #root {
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
-  }
+}
+
+.description{
+    color: crimson;
+    font-size: larger;
+}
+
+.description-row {
+    background: darkturquoise;
+    padding: 30px;
+    align-items: baseline
+}
