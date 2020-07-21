@@ -14,12 +14,14 @@ enum FamilyName {
     Gates = 3,
 }
 
+interface IPersonName {
+    first: string
+    last: string
+    middle?: string    
+}
+
 interface IPerson {
-    name: {
-        first: string
-        last: string
-        middle?: string
-    }
+    name: IPersonName
     age: number
     // profession: string,
     familyName: FamilyName
