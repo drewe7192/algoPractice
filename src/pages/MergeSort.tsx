@@ -1,8 +1,9 @@
 import React, { FC, useState, useEffect, ReactNode } from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSortAlphaUp, faSortAlphaDown, faSortDown, faSortNumericDown, faSortNumericUp, IconDefinition } from '@fortawesome/free-solid-svg-icons'
+import { faSortAlphaUp, faSortAlphaDown, faSortNumericDown, faSortNumericUp, IconDefinition } from '@fortawesome/free-solid-svg-icons'
 
+// predefined dataStore is stored here
 import { PeopleCollection } from './../Data/PeopleSample'
 
 type NameKeys = keyof IPersonName
@@ -34,6 +35,7 @@ interface IMergeSortPageProps {
 
 export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProps) => {
 
+    // logic for sorting the tableData
     const sortTable = (key: EmployeeKeys, newSortOrder: sortOrder) => {
         const isName = key === 'name'
         // default compare function
@@ -73,16 +75,26 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
 
     }
 
+    // Same as ComponentDidMount.
+    // Will sortTable if a defaultSort is passed in
     useEffect(() => 
     {
         if(props.defaultSort) sortTable(props.defaultSort, sortOrder.ASC)
     },
     [])
 
+    // holds raw data for table
     const [tableData, setTableData] = useState<Array<IEmployee>>(PeopleCollection.getEmployeeData())
+    // Holds data for what is currently sorted and how it is sorted.
     const [sortState, setSortState] = useState<nullable<ISortState>>(null)
 
+    // Header Data that is used to create the Header...
     const headerData: Array<IHeader> = [
+        {
+            display: 'Name',
+            key: 'fullName',
+            typeOfData: sortType.Alpha
+        },
         {
             display: 'First Name',
             key: 'first',
@@ -110,6 +122,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
         }
     ]
 
+    // Responsible for creating the table Header
     const renderTableHead = (Headers: Array<IHeader>) => {
         let currentSort: nullable<EmployeeKeys> = null
         if(sortState!==null) {
@@ -148,16 +161,24 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
         </div>
     }
 
+    // Responsible for creating a single CELL in table body
+    const createTableCell = (cellValue: string):JSX.Element => {
+        const tableRowClassName = "stretched centeredAligned"
+        return <div className={tableRowClassName}>{cellValue}</div>
+    }
+
+    // Responsible for creating the table body...
     const renderTableBody = () => {
+        const tableRowClassName = "stretched centeredAligned"
         return <div className="flex-item tableBody vertical">
                 {tableData.map(t => 
-                    <div className="flex-item stretched" key={t.name.first+"_"+t.name.last}>
-                        {/*<div className="stretched centeredAligned">{t.name.first+" "+t.name.last}</div>*/}
-                        <div className="stretched centeredAligned">{t.name.first}</div>
-                        <div className="stretched centeredAligned">{t.name.last}</div>
-                        <div className="stretched centeredAligned">{t.email}</div>
-                        <div className="stretched centeredAligned">{t.salary.toCurrency()}</div>
-                        <div className="stretched centeredAligned">{t.profession}</div>
+                    <div className="flex-item stretched tableRow" key={t.name.first+"_"+t.name.last}>
+                        {createTableCell(t.fullName)}
+                        {createTableCell(t.name.first)}
+                        {createTableCell(t.name.last)}
+                        {createTableCell(t.email)}
+                        {createTableCell(t.salary.toCurrency())}
+                        {createTableCell(t.profession)}
                     </div>)}
             </div>
     }

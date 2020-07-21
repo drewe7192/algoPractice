@@ -4,22 +4,42 @@ class Person implements IPerson
 {
     public name: IName
     public age: number
-    // public profession: string
     public familyName: FamilyName
-    constructor(name: IName, age: number, family: FamilyName)
+
+    constructor(
+        name: IName,
+        age: number, 
+        family: FamilyName
+    )
     {
         this.name = name
         this.age = age
-        // this.profession = profession
         this.familyName = family
-    }    
+    }
+
+    get fullName()
+    {
+        const { first, last, middle } = this.name
+        if(middle)
+            return `${first} ${middle} ${last}`            
+        return `${first} ${last}`
+    }
 }
 
 class Employee extends Person implements IPerson, IEmployee {
+    
     public salary: number
     public profession: string
     public email: string
-    constructor(name: IName, age: number, family: FamilyName, profession: string, salary: number, email: string)
+
+    constructor(
+        name: IName, 
+        age: number, 
+        family: FamilyName, 
+        profession: string, 
+        salary: number, 
+        email: string
+    )
     {
         super(name,age, family)
         this.salary = salary
@@ -42,8 +62,8 @@ export abstract class PeopleCollection
         new Person({first: 'Arya', middle: 'Ann', last: 'Ferreira'}, 2/52, FamilyName.Ferreira)
     ]
 
+    // Used in MergeSort.tsx
     private static readonly EmployeeData: Array<IEmployee> = [
-
         new Employee({first: 'Felipe',last: 'Ferreira'}, 31, FamilyName.Ferreira, 'Programmer', 69999, 'felipesemail@gmail.com'),
         new Employee({first: 'Rebecca',last: 'Amos'}, 31, FamilyName.Ferreira, 'Nurse Practicioner', 99999, 'rebeccasemail@gmail.com'),
         new Employee({first: 'Drew',last: 'Sutherland'}, 26, FamilyName.Sutherland, 'entrepreneur', 1000000, 'felipesemail@gmail.com'),

@@ -11,11 +11,19 @@
 }
 
 .tableBody .stretched.centeredAligned {
-    background: paleturquoise;
     padding: 10px 0;
 
 }
 
 .tableHead > .stretched.centeredAligned.active {
     background: aliceblue;
+}
+
+.table .tableRow{
+    background: paleturquoise;
+}
+.table .tableRow:hover {
+    cursor: pointer;
+    background: #303030;
+    color: ghostwhite;
 }

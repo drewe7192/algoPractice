@@ -23,8 +23,8 @@ interface IPersonName {
 interface IPerson {
     name: IPersonName
     age: number
-    // profession: string,
     familyName: FamilyName
+    fullName: string
 }
 
 interface IEmployee extends IPerson {
