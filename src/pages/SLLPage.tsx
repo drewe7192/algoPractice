@@ -46,10 +46,8 @@ function SLLNodeButton<T>(props: ISLLNodeButtonProps<T>) {
         const { value, next } = props.nodeRef
         const { displayKey } = props
 
-        let hasNextNode = next !== null
         let nextNodeRef: ReactNode = null
-
-        if(hasNextNode)
+        if(next !== null)
             nextNodeRef = <SLLNodeButton nodeRef={next as ISLLNode<T>} displayKey={props.displayKey}/>
         let displayValue: ReactNode = null
         if(!displayKey) {
