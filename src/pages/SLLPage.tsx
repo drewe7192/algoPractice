@@ -28,6 +28,28 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
     }, [])
 
     return <div>
+        <form>
+            <div>
+                <p>Name</p>
+                <label htmlFor="firstName">first
+                    <input type="text" name="firstName" id="firstName"/>
+                </label>
+                <label htmlFor="lastName">last
+                    <input type="text" name="lastName" id="lastName"/>
+                </label>
+            </div>
+            <div>
+                <label htmlFor="age">age
+                    <input type="number" name="age" id="age"/>
+                </label>
+            </div>
+            <div>
+                <input type="submit" value="push new"/>
+            </div>
+        </form>
+
+        <div className="bordered button">Add new user</div>
+        
         <SLLNodeButton nodeRef={linkedList.head} displayKey="fullName"/>
     </div>
 

@@ -3,4 +3,5 @@ export enum FamilyName {
     Sutherland = 1,
     Applewhite = 2,
     Gates = 3,
+    Other = 4
 }
