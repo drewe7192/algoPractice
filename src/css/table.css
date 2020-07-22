@@ -21,6 +21,7 @@
 
 .table .tableRow{
     background: paleturquoise;
+    flex-wrap: nowrap;
 }
 .table .tableRow:hover {
     cursor: pointer;

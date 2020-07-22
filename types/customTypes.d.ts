@@ -40,6 +40,7 @@ interface IEmployee extends IPerson {
 
 type EmployeeKeys = keyof Employee
 
+// PROTOTYPES DECLARED HERE
 interface Array<T> {
     mergeSort(compareFn: (a: T, b: T) => boolean, collection?: Array<T>): Array<T>
 }
@@ -50,4 +51,9 @@ interface Console {
 
 interface Number {
     toCurrency: () => string;
+}
+
+interface ObjectConstructor
+{
+    shallowCopy(): void
 }

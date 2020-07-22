@@ -1,6 +1,6 @@
 import { FamilyName } from './../enums'
 
-class Person implements IPerson
+export class Person implements IPerson
 {
     public name: IName
     public age: number

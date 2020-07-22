@@ -95,6 +95,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             key: 'fullName',
             typeOfData: sortType.Alpha
         },
+        /* 
         {
             display: 'First Name',
             key: 'first',
@@ -105,6 +106,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             key: 'last',
             typeOfData: sortType.Alpha
         },
+        */
         {
             display: 'Email',
             key: 'email',
@@ -132,7 +134,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
             {Headers.map(h => {
                 const { key, display, typeOfData } = h
                 const isSelected = key === currentSort
-                let className = "stretched centeredAligned"
+                let className = "stretched centeredAligned ellipsis"
 
                 let newSortOrder: sortOrder = sortOrder.ASC;
                 if(sortState!==null) {
@@ -163,7 +165,7 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
 
     // Responsible for creating a single CELL in table body
     const createTableCell = (cellValue: string):JSX.Element => {
-        const tableRowClassName = "stretched centeredAligned"
+        const tableRowClassName = "stretched centeredAligned ellipsis"
         return <div className={tableRowClassName}>{cellValue}</div>
     }
 
@@ -174,8 +176,10 @@ export const MergeSortPage: FC<IMergeSortPageProps> = (props: IMergeSortPageProp
                 {tableData.map(t => 
                     <div className="flex-item stretched tableRow" key={t.name.first+"_"+t.name.last}>
                         {createTableCell(t.fullName)}
+                        {/*
                         {createTableCell(t.name.first)}
                         {createTableCell(t.name.last)}
+                        */}
                         {createTableCell(t.email)}
                         {createTableCell(t.salary.toCurrency())}
                         {createTableCell(t.profession)}

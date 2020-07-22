@@ -22,26 +22,6 @@
  *              + value: 6
  */
 
-interface ISLLNode<T>
-{
-    value: T
-    next: nullable<ISLLNode<T>>
-}
-
-interface ISLLAttributes<T>
-{
-    head: nullable<ISLLNode<T>>
-    tail: nullable<ISLLNode<T>>
-    count: number
-}
-
-interface ISLLActions<T> 
-{
-    push(value: T):void
-    printAllNodes(): void
-    toArray():Array<T>
-}
-
 class SLLNode<T> implements ISLLNode<T> {
     public value: T
     public next: nullable<ISLLNode<T>>
@@ -54,7 +34,6 @@ class SLLNode<T> implements ISLLNode<T> {
 
 export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
 {
-
     public head: nullable<ISLLNode<T>>
     public tail: nullable<ISLLNode<T>>
     public count: number
@@ -64,6 +43,11 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
         this.head = null
         this.tail = null
         this.count = 0
+    }
+
+    public getFirstNode(): nullable<ISLLNode<T>>
+    {
+        return this.head
     }
 
     public static createNew<T>(): LinkedList<T>
@@ -94,6 +78,32 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
             this.tail = newNode
         }
     }
+
+
+    public pop(): nullable<ISLLNode<T>>
+    {
+        if(this.count > 0) {
+            this.count--
+            if(this.count === 1) {
+                // returns to initial state...
+                this.tail = null
+                this.head = null
+            } else {
+                // need to find the node prior to tail...
+                let nodePriorToTail = this.head
+                while(nodePriorToTail && nodePriorToTail.next !== this.tail) {
+                    nodePriorToTail = nodePriorToTail.next
+                }
+                this.tail = null
+                // turning tail into the second to last, new last...
+                if(nodePriorToTail && nodePriorToTail.next)
+                    nodePriorToTail.next = null
+                this.tail = nodePriorToTail
+            }
+        }
+        return this.tail
+    }
+
 
     /**
      * Will display all nodes in SLL

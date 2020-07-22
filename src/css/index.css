@@ -82,3 +82,9 @@ html, body, #root {
     padding: 30px;
     align-items: baseline
 }
+
+.ellipsis {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
