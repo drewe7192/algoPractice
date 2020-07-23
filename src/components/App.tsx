@@ -14,23 +14,29 @@ interface IAppProps {}
 
 export const App:FC<IAppProps> = (props: IAppProps) => {
     return <Router>
-        <div>
-            <div className="flex-item wrapped space-evenly darkBackground">
-                <NavLink activeClassName="selected" to="/MergeSort" className="bordered button noDecoration">Merge Sort</NavLink>
-                <NavLink activeClassName="selected" to="/SLL" className="bordered button noDecoration">SLL Code</NavLink>
+        <div className="flex-item vertical fullDim">
+
+            <div className="navigation">
+                <div className="flex-item wrapped space-evenly darkBackground">
+                    <NavLink activeClassName="selected" to="/MergeSort" className="bordered button centered flex-item noDecoration"><span>Merge Sort</span></NavLink>
+                    <NavLink activeClassName="selected" to="/SLL" className="bordered button centered flex-item noDecoration"><span>SLL Code</span></NavLink>
+                </div>
+            </div>
+            
+            <div className="main stretched">
+                <Switch>
+                    <Route path="/MergeSort">
+                        <MergeSortPage/>
+                    </Route>
+                    <Route path="/SLL">
+                        <SLLPage/>
+                    </Route>
+                    <Route exact path="/">
+                        <HomePage/>
+                    </Route>
+                </Switch>
             </div>
         </div>
-        <Switch>
-          <Route path="/MergeSort">
-              <MergeSortPage/>
-          </Route>
-          <Route path="/SLL">
-              <SLLPage/>
-          </Route>
-          <Route exact path="/">
-              <HomePage/>
-          </Route>
-        </Switch>
     </Router>
 
 }

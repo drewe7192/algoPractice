@@ -64,18 +64,22 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
      * Adds a new value to the SLL
      * @param value Will be the new value we are adding to the SLL.
      */
-    public push(value: T):void
+    public push(value: T | Array<T>):void
     {
-        this.count++
-        const newNode = new SLLNode<T>(value)
-        if(this.head === null || this.count === 0) {
-            this.head = newNode // new SLLNode<T>(value)
-            this.tail = this.head
+        if(Array.isArray(value)) {
+            value.forEach(n => this.push)
         } else {
-            const currentTail = this.tail as ISLLNode<T>
-            // const newTail = new SLLNode<T>(value)
-            currentTail.next = newNode
-            this.tail = newNode
+            this.count++
+            const newNode = new SLLNode<T>(value)
+            if(this.head === null || this.count === 0) {
+                this.head = newNode // new SLLNode<T>(value)
+                this.tail = this.head
+            } else {
+                const currentTail = this.tail as ISLLNode<T>
+                // const newTail = new SLLNode<T>(value)
+                currentTail.next = newNode
+                this.tail = newNode
+            }
         }
     }
 

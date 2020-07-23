@@ -55,7 +55,7 @@ export default () => {
             subDescription = <a className="noDecoration" target={link.target} href={link.href}>{link.display}</a>
         }
 
-        return <div className="centered flex-item stretched vertical">
+        return <div key={title} className="centered flex-item stretched vertical">
             <h1 className="centered flex-item title">
                 <img height="80" src={imgSrc} alt="github image"/>
                <span>{title}</span>

@@ -15,7 +15,7 @@ interface ISLLActions<T>
 {
     head: nullable<ISLLNode<T>>
     // getFirstNode(): nullable<ISLLNode<T>>
-    push(value: T):void
+    push(value: T | Array<T>):void
     pop(): nullable<ISLLNode<T>>
     printAllNodes(): void
     toArray():Array<T>

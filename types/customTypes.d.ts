@@ -17,7 +17,8 @@ enum FamilyName {
     Sutherland = 1,
     Applewhite = 2,
     Gates = 3,
-    Other = 4
+    Other = 4,
+    Amos = 5
 }
 
 interface IPersonName {
