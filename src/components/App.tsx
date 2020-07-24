@@ -23,7 +23,7 @@ export const App:FC<IAppProps> = (props: IAppProps) => {
                 </div>
             </div>
             
-            <div className="main stretched">
+            <div className="main stretched fullDim">
                 <Switch>
                     <Route path="/MergeSort">
                         <MergeSortPage/>

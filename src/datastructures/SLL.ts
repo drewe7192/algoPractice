@@ -67,7 +67,7 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
     public push(value: T | Array<T>):void
     {
         if(Array.isArray(value)) {
-            value.forEach(n => this.push)
+            value.forEach((n) => this.push(n))
         } else {
             this.count++
             const newNode = new SLLNode<T>(value)
@@ -80,6 +80,42 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
                 currentTail.next = newNode
                 this.tail = newNode
             }
+        }
+    }
+
+    /**
+     * Pop but at Head
+     */
+    public shift():void{
+        if(this.count === 0) {
+            return
+        } else if(this.count === 1) {
+            this.pop()
+            return
+        } else if(this.count > 1) {
+            let currentHead = this.head
+            if(currentHead && currentHead.next) {
+                const newNext = currentHead.next
+                this.head = null
+                this.head = newNext
+            }
+            this.count--
+        }
+    }
+
+    /**
+     * Push to Head
+     * @param value is value of generic T
+     */
+    public unshift(value: T):void
+    {
+        if(this.count ===0) {
+            this.push(value)
+        } else {
+            const currentHead = this.head
+            this.head = new SLLNode(value)
+            this.head.next = currentHead
+            this.count++
         }
     }
 

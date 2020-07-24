@@ -19,20 +19,31 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
 
         // Adding Melinda Gates, Bill Gates Wife
         // Showing you that we can add...
+        const otherFerreiraFamily = [
+            new Person({first: 'Deborah', last: 'Ribeiro'}, 55, FamilyName.Ferreira),
+            new Person({first: 'Eduardo', last: 'Ferreira'}, 55, FamilyName.Ferreira),
+            new Person({first: 'Marina', last: 'Ferreira'}, 55, FamilyName.Ferreira),
+            new Person({first: 'Arya', last: 'Ferreira'}, 55, FamilyName.Ferreira)
+        ]
+        linkedList.push(otherFerreiraFamily)
+
         linkedList.push(new Person({first: 'Melinda', last: 'Gates'}, 55, FamilyName.Other))
-        /*
-        linkedList.push(new Person({first: 'Arya', last: 'Ferreira'}, 55, FamilyName.Ferreira))
-        linkedList.push(new Person({first: 'Deborah', last: 'Ribeiro'}, 55, FamilyName.Ferreira))
-        linkedList.push(new Person({first: 'Eduardo', last: 'Ferreira'}, 55, FamilyName.Ferreira))
-        linkedList.push(new Person({first: 'Marina', last: 'Ferreira'}, 55, FamilyName.Ferreira))
-        linkedList.push(new Person({first: 'Glen', last: 'Amos'}, 55, FamilyName.Amos))
-        linkedList.push(new Person({first: 'Julie', last: 'Amos'}, 55, FamilyName.Amos))
-        linkedList.push(new Person({first: 'Ashley', last: 'Gates'}, 55, FamilyName.Other))
-        linkedList.push(new Person({first: 'Jude', last: 'Gates'}, 55, FamilyName.Other))
-        linkedList.push(new Person({first: 'Alex', last: 'Gates'}, 55, FamilyName.Other))
-        linkedList.push(new Person({first: 'Robert', last: 'Gates'}, 55, FamilyName.Other))
-        */
-       
+
+        linkedList.push(new Person({first: 'Deborah', last: 'Ribeiro'}, 60, FamilyName.Ferreira))
+        linkedList.push(new Person({first: 'Eduardo', last: 'Ferreira'}, 65, FamilyName.Ferreira))
+        linkedList.push(new Person({first: 'Marina', last: 'Ferreira'}, 34, FamilyName.Ferreira))
+        linkedList.push(new Person({first: 'Glen', last: 'Amos'}, 59, FamilyName.Amos))
+        linkedList.push(new Person({first: 'Julie', last: 'Amos'}, 58, FamilyName.Amos))
+        linkedList.push(new Person({first: 'Ashley', last: 'McCraney'}, 48, FamilyName.Other))
+        linkedList.push(new Person({first: 'Jude', last: 'Law'}, 40, FamilyName.Other))
+        linkedList.push(new Person({first: 'Alex', last: 'Kin'}, 22, FamilyName.Other))
+        linkedList.push(new Person({first: 'Robert', last: 'Deniro'}, 72, FamilyName.Other))
+
+        // removes from the head
+        linkedList.shift()
+        // adding the following...
+        linkedList.unshift(new Person({first: 'uncle', last: 'fifi'}, 31, FamilyName.Ferreira))
+
         // changing pointers
         const copy = Object.assign({}, linkedList)
         changeLinkedList(copy)
@@ -68,7 +79,7 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
                 LEFT SIDE DASH
             </div>
             <div id="SLLPage-right" className="centered flex-item stretched">
-                <span>
+                <span className="auto-overflow SLL-List">
                     <SLLNodeButton nodeRef={linkedList.head} displayKey="fullName"/>
                 </span>
             </div>
