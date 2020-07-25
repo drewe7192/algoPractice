@@ -32,6 +32,7 @@ interface IPerson {
     age: number
     familyName: FamilyName
     fullName: string
+    toEmployee(this: IPerson, profession: string, salary: number, email: string): IEmployee
 }
 
 interface IEmployee extends IPerson {

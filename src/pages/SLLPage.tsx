@@ -7,42 +7,35 @@ import { FamilyName } from './../enums'
 interface ISLLPageProps {}
 export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
 
+    // State management
     const [linkedList, changeLinkedList] = useState(LinkedList.createNewActions<IPerson>())
+
+    // constant Extra Family Members
+    const restOfFerreirasFamily: Array<IPerson> = [
+        new Person({first: 'Deborah', last: 'Ribeiro'}, 60, FamilyName.Ferreira),
+        new Person({first: 'Eduardo', last: 'Ferreira'}, 65, FamilyName.Ferreira),
+        new Person({first: 'Marina', last: 'Ferreira'}, 34, FamilyName.Ferreira),
+    ]
 
     useEffect(() => {
 
-        PeopleCollection.getFerreiraFamily().forEach(person => {
-            linkedList.push(person)
-        })
+        linkedList.push(PeopleCollection.getFerreiraFamily())
 
+        // removing last member from Family...
         linkedList.pop()
 
         // Adding Melinda Gates, Bill Gates Wife
         // Showing you that we can add...
-        const otherFerreiraFamily = [
-            new Person({first: 'Deborah', last: 'Ribeiro'}, 55, FamilyName.Ferreira),
-            new Person({first: 'Eduardo', last: 'Ferreira'}, 55, FamilyName.Ferreira),
-            new Person({first: 'Marina', last: 'Ferreira'}, 55, FamilyName.Ferreira),
-            new Person({first: 'Arya', last: 'Ferreira'}, 55, FamilyName.Ferreira)
-        ]
-        linkedList.push(otherFerreiraFamily)
-
-        linkedList.push(new Person({first: 'Melinda', last: 'Gates'}, 55, FamilyName.Other))
-
-        linkedList.push(new Person({first: 'Deborah', last: 'Ribeiro'}, 60, FamilyName.Ferreira))
-        linkedList.push(new Person({first: 'Eduardo', last: 'Ferreira'}, 65, FamilyName.Ferreira))
-        linkedList.push(new Person({first: 'Marina', last: 'Ferreira'}, 34, FamilyName.Ferreira))
+        linkedList.push(restOfFerreirasFamily)
+        // Can also add like this...
         linkedList.push(new Person({first: 'Glen', last: 'Amos'}, 59, FamilyName.Amos))
-        linkedList.push(new Person({first: 'Julie', last: 'Amos'}, 58, FamilyName.Amos))
-        linkedList.push(new Person({first: 'Ashley', last: 'McCraney'}, 48, FamilyName.Other))
-        linkedList.push(new Person({first: 'Jude', last: 'Law'}, 40, FamilyName.Other))
-        linkedList.push(new Person({first: 'Alex', last: 'Kin'}, 22, FamilyName.Other))
-        linkedList.push(new Person({first: 'Robert', last: 'Deniro'}, 72, FamilyName.Other))
 
         // removes from the head
         linkedList.shift()
-        // adding the following...
+
+        // adding the following...fromHead*
         linkedList.unshift(new Person({first: 'uncle', last: 'fifi'}, 31, FamilyName.Ferreira))
+        linkedList.unshift(new Person({first: 'Drew', last: 'Sutherland'}, 31, FamilyName.Ferreira))
 
         // changing pointers
         const copy = Object.assign({}, linkedList)
@@ -50,42 +43,48 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
 
     }, [])
 
+
+    const leftDashboard = () => <div id="SLLPage-left" className="stretched flex-item centered">
+        LEFT SIDE DASH
+    </div>
+
+    const rightDashboard = () => <div id="SLLPage-right" className="centered flex-item stretched">
+        <span className="auto-overflow SLL-List">
+            <SLLNodeButton nodeRef={linkedList.head} displayKey="fullName"/>
+        </span>
+    </div>
+
+    // workInProgress
+    const addNodeForm = () => {
+        return <>
+            <form>
+                <div>
+                    <p>Name</p>
+                    <label htmlFor="firstName">first
+                        <input type="text" name="firstName" id="firstName"/>
+                    </label>
+                    <label htmlFor="lastName">last
+                        <input type="text" name="lastName" id="lastName"/>
+                    </label>
+                </div>
+                <div>
+                    <label htmlFor="age">age
+                        <input type="number" name="age" id="age"/>
+                    </label>
+                </div>
+                <div>
+                    <input type="submit" value="push new"/>
+                </div>
+            </form>
+            <div className="bordered button">Add new user</div>
+        </>
+    }
+
     return <>
-        {/*
-        <form>
-            <div>
-                <p>Name</p>
-                <label htmlFor="firstName">first
-                    <input type="text" name="firstName" id="firstName"/>
-                </label>
-                <label htmlFor="lastName">last
-                    <input type="text" name="lastName" id="lastName"/>
-                </label>
-            </div>
-            <div>
-                <label htmlFor="age">age
-                    <input type="number" name="age" id="age"/>
-                </label>
-            </div>
-            <div>
-                <input type="submit" value="push new"/>
-            </div>
-        </form>
-        <div className="bordered button">Add new user</div>
-        */}
-        
         <div className="fullDim flex-item">
-            <div id="SLLPage-left" className="stretched">
-                LEFT SIDE DASH
-            </div>
-            <div id="SLLPage-right" className="centered flex-item stretched">
-                <span className="auto-overflow SLL-List">
-                    <SLLNodeButton nodeRef={linkedList.head} displayKey="fullName"/>
-                </span>
-            </div>
+            {leftDashboard()}
+            {rightDashboard()}
         </div>
-
-
     </>
 }
 
