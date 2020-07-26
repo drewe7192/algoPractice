@@ -9,14 +9,13 @@ import {
     Switch,
     Route,
     NavLink
-  } from "react-router-dom"
-
-interface IAppProps {}
-
-export const App:FC<IAppProps> = (props: IAppProps) => {
+} from "react-router-dom"
 
 
-    const [menuIsShown, setMenuShown] = useState<boolean>(false)
+
+export const App:FC = () => {
+
+    const [menuIsShown, setMenuShown] = useState<boolean>(true)
     const hamburgerButtonToggle = ():void => setMenuShown(!menuIsShown)
 
     const hamburgerButton = () => {
@@ -34,26 +33,29 @@ export const App:FC<IAppProps> = (props: IAppProps) => {
             <NavLink activeClassName="houseLink selected" to="/">
                 <img height="68" className="home" src={house} alt="home page"/>
             </NavLink>
-            {/*
-            <div className="flex-item wrapped space-evenly">
-                <NavLink activeClassName="selected" to="/MergeSort" className="bordered button centered flex-item noDecoration"><span>Merge Sort</span></NavLink>
-                <NavLink activeClassName="selected" to="/SLL" className="bordered button centered flex-item noDecoration"><span>SLL Code</span></NavLink>
-            </div>
-            */}
         </div>
     }
 
     const getSubNav = () => {
         let className = 'flex-item subNavigation_area'
+        let _className = 'display'
         if(menuIsShown) className += ' display'
+        else _className = 'noDisplay'
         return <div className={className}>
             <div className="selection-zone stretched">
+                <div className={_className}>
+                    <div>
+                        <h1>Sorting</h1>
+                        <NavLink onClick={hamburgerButtonToggle} activeClassName="selected" to="/MergeSort" className="noDecoration"><span>Merge Sort</span></NavLink>
+                    </div>
+                    <div>
+                        <h1>Collections</h1>
+                        <NavLink onClick={hamburgerButtonToggle} activeClassName="selected" to="/SLL" className="noDecoration"><span>Singly Linked List</span></NavLink>
+                    </div>
+                </div>
             </div>
-            <div className="shadow-zone">
+            <div className="shadow-zone clickArea" onClick={hamburgerButtonToggle}>
             </div>
-            {/* 
-                DRAW OUT LOGIC THAT WILL DISPLAY THE HAMBURGER OPTIONS HERE IN ORGANIZED WAY...
-            */}
         </div>
     }
 
@@ -63,10 +65,10 @@ export const App:FC<IAppProps> = (props: IAppProps) => {
             {getNavigation()}
             <div className="main stretched fullDim">
                 <Switch>
-                    <Route path="/MergeSort">
+                    <Route exact path="/MergeSort">
                         <MergeSortPage/>
                     </Route>
-                    <Route path="/SLL">
+                    <Route exact path="/SLL">
                         <SLLPage/>
                     </Route>
                     <Route exact path="/">

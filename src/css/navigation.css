@@ -20,6 +20,9 @@ a.selected img {
     transform: translateX(0%);
 }
 
+.selection-zone {
+    background: aliceblue;
+}
 .shadow-zone {
     background: #37475a9e;
     flex: 2;

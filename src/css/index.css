@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -19,6 +18,10 @@
   
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
+}
+
+.clickArea {
+    cursor: pointer;
 }
 
 
@@ -140,4 +143,8 @@ html, body, #root {
 
 .navigation > div {
     padding: 10px 0;
+}
+
+.noDisplay {
+    display: none;
 }
