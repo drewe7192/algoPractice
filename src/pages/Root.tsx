@@ -1,8 +1,7 @@
 import React from 'react'
-
-import github from './../assets/github.png'
+// import github from './../assets/github.png'
 import purpose from './../assets/purpose.png'
-import scale from './../assets/scale.png'
+// import scale from './../assets/scale.png'
 
 interface ILinkDetails {
     target: '_blank' | '_self'
@@ -20,6 +19,7 @@ interface ICellParameter {
 export default () => {
 
     const cellData: Array<ICellParameter> = [
+        /*
         {
             title: 'Github',
             imgSrc: github,
@@ -29,12 +29,13 @@ export default () => {
                 href: 'https://github.com/drewe7192/algoPractice'
             },
         },
+        */
         {
             title: 'Purpose',
             imgSrc: purpose,
-
             description: 'This repo is used to practice our skills in common datastructures and algorithms.'
         },
+        /*
         {
             title: 'License',
             imgSrc: scale,
@@ -44,6 +45,7 @@ export default () => {
                 href: 'https://opensource.org/licenses/MIT'
             },
         }
+        */
     ]
 
     const CreateCell = (cellArguments: ICellParameter) => {
@@ -55,7 +57,7 @@ export default () => {
             subDescription = <a className="noDecoration" target={link.target} href={link.href}>{link.display}</a>
         }
 
-        return <div key={title} className="centered flex-item stretched vertical">
+        return <div key={title}>
             <h1 className="centered flex-item title">
                 <img height="80" src={imgSrc} alt="github image"/>
                <span>{title}</span>
@@ -66,7 +68,7 @@ export default () => {
         </div>
     }
 
-    return <div className="flex-item description-row">
+    return <div className="flex-item description-row fullDim centered">
         {cellData.map(CreateCell)}
     </div>
 }

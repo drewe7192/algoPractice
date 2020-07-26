@@ -1,5 +1,6 @@
 .tableHead > .stretched.centeredAligned {
-    background: cornflowerblue;
+    background: #232F3E;
+    color: aliceblue;
     padding: 10px;
     font-size: 150%;
     text-transform: uppercase;
@@ -17,11 +18,13 @@
 
 .tableHead > .stretched.centeredAligned.active {
     background: aliceblue;
+    color: #232F3E;
 }
 
 .table .tableRow{
-    background: paleturquoise;
+    background: #37475A;
     flex-wrap: nowrap;
+    color: azure;
 }
 .table .tableRow:hover {
     cursor: pointer;

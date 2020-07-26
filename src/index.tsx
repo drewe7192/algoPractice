@@ -7,10 +7,11 @@ import { App } from './components/App'
 import './css/index.css'
 import './css/flexbox.css'
 import './css/table.css'
+import './css/navigation.css'
 
 // setting up our prototypes here
 prototypesBootstrap.setUp()
 
 // React Setup here
-const injectArea = document.getElementById("root")
-ReactDOM.render(<App/>,injectArea)
+const injectionArea = document.getElementById("root") as HTMLDivElement
+ReactDOM.render(<App/>,injectionArea)

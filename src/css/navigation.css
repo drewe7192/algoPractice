@@ -1,0 +1,58 @@
+a.houseLink {
+    height: 70px;
+}
+a.selected img {
+    border: 1px dashed #FEBD69;
+    padding: 5px;
+}
+
+.subNavigation_area {
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    background: #f8f8ff9e;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-in-out;
+}
+
+.subNavigation_area.display {
+    width: 100%;
+    transform: translateX(0%);
+}
+
+.shadow-zone {
+    background: #37475a9e;
+    flex: 2;
+}
+
+.navigation {
+    height: 90px;
+    background: #146eb4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navigation .hamburger_button {
+    height: 70px;
+    border: 1px solid black;
+    background: #f2f2f2;
+    width: 70px;
+    border-radius: 6px;
+    margin-left: 10px;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation .hamburger_button > .line {
+    width: 80%;
+    height: 5px;
+    background: #303030;
+    border-radius: 2px;
+}
+
+.navigation .home {
+    margin-left: 10px;
+    cursor: pointer;
+}
