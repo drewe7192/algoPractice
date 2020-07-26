@@ -84,16 +84,14 @@ html, body, #root {
     width: 5px;
     height: 50px;
     background: ghostwhite;
-    margin: auto;
     border-radius: 14px;
     box-shadow: 3px 1px 4px black;
 }
 
 .SLL-List {
-    height: 70%;
     padding: 30px;
     border: 1px dashed #888;
-    background: #FEBD69;/*darkslategrey*/
+    background: #FEBD69;
 }
 
 .button {

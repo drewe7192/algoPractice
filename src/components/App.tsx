@@ -15,7 +15,7 @@ import {
 
 export const App:FC = () => {
 
-    const [menuIsShown, setMenuShown] = useState<boolean>(true)
+    const [menuIsShown, setMenuShown] = useState<boolean>(false)
     const hamburgerButtonToggle = ():void => setMenuShown(!menuIsShown)
 
     const hamburgerButton = () => {

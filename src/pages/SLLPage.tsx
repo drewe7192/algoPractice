@@ -4,11 +4,13 @@ import { PeopleCollection, Person } from './../Data/PeopleSample'
 import { LinkedList } from './../datastructures/SLL'
 import { FamilyName } from './../enums'
 
+type animatedFunction = () => ISLLActions<IPerson>
+
 interface ISLLPageProps {}
 export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
 
     // State management
-    const [linkedList, changeLinkedList] = useState(LinkedList.createNewActions<IPerson>())
+    const [linkedList, changeLinkedList] = useState<ISLLActions<IPerson>>(LinkedList.createNewActions<IPerson>())
 
     // constant Extra Family Members
     const restOfFerreirasFamily: Array<IPerson> = [
@@ -17,39 +19,74 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
         new Person({first: 'Marina', last: 'Ferreira'}, 34, FamilyName.Ferreira),
     ]
 
+    const _animationActions: Array<animatedFunction> = [
+        () => {
+            // first addition like so...
+            linkedList.push(PeopleCollection.getFerreiraFamily())
+            return linkedList
+        },
+        () => {
+            // removing last member from Family...
+            linkedList.pop()
+            return linkedList
+        },
+        () => {
+            // Adding Melinda Gates, Bill Gates Wife
+            // Showing you that we can add...
+            linkedList.push(restOfFerreirasFamily)
+            return linkedList
+        },
+        () => {
+            // Can also add like this...
+            linkedList.push(new Person({first: 'Glen', last: 'Amos'}, 59, FamilyName.Amos))
+            return linkedList
+        },
+        () => {
+            // removes from the head
+            linkedList.shift()
+            return linkedList
+        },
+        () => {
+            // adding the following...fromHead*
+            linkedList.unshift(new Person({first: 'uncle', last: 'fifi'}, 31, FamilyName.Ferreira))
+            return linkedList
+        },
+        () => {
+            // adding the following...fromHead*
+            linkedList.unshift(new Person({first: 'Drew', last: 'Sutherland'}, 31, FamilyName.Ferreira))
+            return linkedList
+        }
+    ]
+
+    const [animationActions, setAnimationActs] = useState(_animationActions)
+
     useEffect(() => {
+        const animationActionsCopy = [...animationActions]
+        if(Array.isArray(animationActionsCopy) && animationActionsCopy.length > 0) {
+            // gets from beg of collection...
+            const act = animationActionsCopy.shift()
 
-        linkedList.push(PeopleCollection.getFerreiraFamily())
+            // timing function...
+            setTimeout(() => {
+                // new collection will now have one less func
+                setAnimationActs(animationActionsCopy)
+                if(act) {
+                    const copy = Object.assign({}, act())
+                    changeLinkedList(copy)
+                }
+            }, 1000)
 
-        // removing last member from Family...
-        linkedList.pop()
-
-        // Adding Melinda Gates, Bill Gates Wife
-        // Showing you that we can add...
-        linkedList.push(restOfFerreirasFamily)
-        // Can also add like this...
-        linkedList.push(new Person({first: 'Glen', last: 'Amos'}, 59, FamilyName.Amos))
-
-        // removes from the head
-        linkedList.shift()
-
-        // adding the following...fromHead*
-        linkedList.unshift(new Person({first: 'uncle', last: 'fifi'}, 31, FamilyName.Ferreira))
-        linkedList.unshift(new Person({first: 'Drew', last: 'Sutherland'}, 31, FamilyName.Ferreira))
-
-        // changing pointers
-        const copy = Object.assign({}, linkedList)
-        changeLinkedList(copy)
-
-    }, [])
+        }
+    }, [animationActions])
 
 
     const leftDashboard = () => <div id="SLLPage-left" className="stretched flex-item centered">
         LEFT SIDE DASH
     </div>
 
+
     const rightDashboard = () => <div id="SLLPage-right" className="centered flex-item stretched">
-        <span className="auto-overflow SLL-List">
+        <span className="centered flex-item auto-overflow SLL-List fullDim vertical">
             <SLLNodeButton nodeRef={linkedList.head} displayKey="fullName"/>
         </span>
     </div>
@@ -95,9 +132,7 @@ interface ISLLNodeButtonProps<T> {
 
 function SLLNodeButton<T>(props: ISLLNodeButtonProps<T>) {
 
-    const _renderNodeStem = (hasNext: boolean):ReactNode => {
-        return hasNext ? <div className="SLLstem flex-item centered"></div> : null
-    }
+    const _renderNodeStem = (hasNext: boolean):ReactNode =>  hasNext ? <div className="SLLstem flex-item centered"></div> : null
 
     const genericRecursiveRender = () =>
     {
