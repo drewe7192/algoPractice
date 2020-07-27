@@ -55,6 +55,15 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
             // adding the following...fromHead*
             linkedList.unshift(new Person({first: 'Drew', last: 'Sutherland'}, 31, FamilyName.Ferreira))
             return linkedList
+        },
+        () => {
+            // testing out the get prototype function
+            const secondItemFromList = linkedList.get(1)
+            debugger
+            console.prettyLog(secondItemFromList)
+            // will cause an exception!!!
+            linkedList.get(100)
+            return linkedList
         }
     ]
 

@@ -1,6 +1,8 @@
 a.houseLink {
     height: 70px;
 }
+
+.selection-zone .selected,
 a.selected img {
     border: 1px dashed #FEBD69;
     padding: 5px;
@@ -21,6 +23,9 @@ a.selected img {
 }
 
 .selection-zone {
+    background: #232F3E;/*aliceblue*/
+}
+.selection-zone h1{
     background: aliceblue;
 }
 .shadow-zone {

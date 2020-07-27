@@ -20,4 +20,6 @@ interface ISLLActions<T>
     toArray():Array<T>
     shift():void// Pop but at Head
     unshift(value: T):void// Push to Head
+    get(indx: number): nullable<ISLLNode<T>>
+    set(indx: number, value: T): void
 }

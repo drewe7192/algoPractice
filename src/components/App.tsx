@@ -30,7 +30,7 @@ export const App:FC = () => {
     const getNavigation = () => {
         return <div className="navigation">
             {hamburgerButton()}
-            <NavLink activeClassName="houseLink selected" to="/">
+            <NavLink exact={true} className="houseLink" activeClassName="selected" to="/">
                 <img height="68" className="home" src={house} alt="home page"/>
             </NavLink>
         </div>

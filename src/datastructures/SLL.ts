@@ -170,4 +170,28 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
         return collection
     }
 
+    public get(indx: number): nullable<ISLLNode<T>> {
+        let returnNode = this.getFirstNode()
+        if(indx === 0) return returnNode
+        if(indx > this.count-1) {
+            // throw "passed indx is greater than this count, out of bounds exception"
+            console.error("passed indx is greater than this count, out of bounds exception")
+            return null
+        }
+        let i = 0
+        while(i < indx && returnNode && returnNode.next)
+        {
+            i++
+            returnNode = returnNode.next
+        }
+        return returnNode
+    }
+
+
+    public set(indx: number, value: T): void
+    {
+        const foundNode = this.get(indx)
+        if(foundNode) foundNode.value = value
+    }
+
 }
