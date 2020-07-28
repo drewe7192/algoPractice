@@ -1,25 +1,24 @@
-import React from 'react'
+import React from "react";
 // import github from './../assets/github.png'
-import purpose from './../assets/purpose.png'
+import purpose from "./../assets/purpose.png";
 // import scale from './../assets/scale.png'
 
 interface ILinkDetails {
-    target: '_blank' | '_self'
-    href: string
-    display: string
+  target: "_blank" | "_self";
+  href: string;
+  display: string;
 }
 
 interface ICellParameter {
-    imgSrc: string, 
-    title: string
-    link?: ILinkDetails
-    description?: string
+  imgSrc: string;
+  title: string;
+  link?: ILinkDetails;
+  description?: string;
 }
 
 export default () => {
-
-    const cellData: Array<ICellParameter> = [
-        /*
+  const cellData: Array<ICellParameter> = [
+    /*
         {
             title: 'Github',
             imgSrc: github,
@@ -30,12 +29,13 @@ export default () => {
             },
         },
         */
-        {
-            title: 'Purpose',
-            imgSrc: purpose,
-            description: 'This repo is used to practice our skills in common datastructures and algorithms.'
-        },
-        /*
+    {
+      title: "Purpose",
+      imgSrc: purpose,
+      description:
+        "This repo is used to practice our skills in common Datastructures and algorithms.",
+    },
+    /*
         {
             title: 'License',
             imgSrc: scale,
@@ -46,29 +46,35 @@ export default () => {
             },
         }
         */
-    ]
+  ];
 
-    const CreateCell = (cellArguments: ICellParameter) => {
-        const { imgSrc, title, description, link } = cellArguments
-        let subDescription: string | null | JSX.Element = null
-        if(description) {
-            subDescription = description
-        } else if(link){
-            subDescription = <a className="noDecoration" target={link.target} href={link.href}>{link.display}</a>
-        }
-
-        return <div key={title}>
-            <h1 className="centered flex-item title">
-                <img height="80" src={imgSrc} alt="github image"/>
-               <span>{title}</span>
-            </h1>
-            <div className="description">
-                {subDescription}
-            </div>
-        </div>
+  const CreateCell = (cellArguments: ICellParameter) => {
+    const { imgSrc, title, description, link } = cellArguments;
+    let subDescription: string | null | JSX.Element = null;
+    if (description) {
+      subDescription = description;
+    } else if (link) {
+      subDescription = (
+        <a className="noDecoration" target={link.target} href={link.href}>
+          {link.display}
+        </a>
+      );
     }
 
-    return <div className="flex-item description-row fullDim centered">
-        {cellData.map(CreateCell)}
+    return (
+      <div key={title}>
+        <h1 className="centered flex-item title">
+          <img height="110" src={imgSrc} alt="github image" />
+          <span style={{ fontSize: "10vh" }}>{title}</span>
+        </h1>
+        <div className="description">{subDescription}</div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="flex-item description-row fullDim centered">
+      {cellData.map(CreateCell)}
     </div>
-}
+  );
+};
