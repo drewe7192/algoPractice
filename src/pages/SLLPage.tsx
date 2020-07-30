@@ -27,17 +27,21 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
             linkedList.push(PeopleCollection.getFerreiraFamily())
             return linkedList
         },
-        () => {
-            // removing last member from Family...
-            linkedList.pop()
-            return linkedList
-        },
+
         () => {
             // Adding Melinda Gates, Bill Gates Wife
             // Showing you that we can add...
             linkedList.push(restOfFerreirasFamily)
             return linkedList
         },
+        
+        /*
+        () => {
+            // removing last member from Family...
+            linkedList.pop()
+            return linkedList
+        },
+
         () => {
             // Can also add like this...
             linkedList.push(new Person({first: 'Glen', last: 'Amos'}, 59, FamilyName.Amos))
@@ -74,6 +78,7 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
             linkedList.remove(3)
             return linkedList
         },
+        */
         () => {
             linkedList.reverse()
             return linkedList

@@ -18,7 +18,7 @@ prototypesBootstrap.setUp()
 // recursionProblemsSet([recursionProblem.other])
 
 // Date Problem Starts Over Here...
-const outDates = DateSolver.preprocessDates([
+const outDates = new DateSolver('-').preprocessDates([
     "20th Oct 2052", 
     "6th Jun 1933", 
     "26th May 1960", 

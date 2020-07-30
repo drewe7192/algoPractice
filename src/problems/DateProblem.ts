@@ -53,6 +53,7 @@
      }
  }
 
+
 interface IMonthLookup {
     "Jan": string
     "Feb": string
@@ -68,20 +69,6 @@ interface IMonthLookup {
     "Dec": string
 }
 
-const MonthsDictionary: IMonthLookup = {
-    "Jan": "01",
-    "Feb": "02",
-    "Mar": "03",
-    "Apr": "04",
-    "May": "05",
-    "Jun": "06",
-    "Jul": "07",
-    "Aug": "08",
-    "Sep": "09",
-    "Oct": "10",
-    "Nov": "11",
-    "Dec": "12"
-}
 
 /**
  * A type that is a string abbreviation for the Months of the year
@@ -89,9 +76,36 @@ const MonthsDictionary: IMonthLookup = {
 type Months = keyof IMonthLookup
 
 
-export abstract class DateSolver
+interface IDateSolverActions {
+    preprocessDates(dates: Array<string>): Array<string>
+}
+
+export class DateSolver implements IDateSolverActions
 {
-    private static readonly _delimitor: string = '-'
+    // Access Members
+    private readonly _delimitor: string
+
+    // Constructor
+    constructor(delim: string)
+    {
+        this._delimitor = delim
+    }
+
+    private static readonly MonthsDictionary: IMonthLookup = {
+        "Jan": "01",
+        "Feb": "02",
+        "Mar": "03",
+        "Apr": "04",
+        "May": "05",
+        "Jun": "06",
+        "Jul": "07",
+        "Aug": "08",
+        "Sep": "09",
+        "Oct": "10",
+        "Nov": "11",
+        "Dec": "12"
+    }
+
     private static readonly MonthsSet = new Set<Months>([
         "Jan",
         "Feb",
@@ -109,11 +123,10 @@ export abstract class DateSolver
 
     private static readonly constraint = {
         small: 1,
-        large: Math.pow(10,4) // 10 * 10 * 10 * 10 = 10,000
+        large: Math.pow(10,4)
     }
 
-
-    private static _validateDay = (dayString: string) => {
+    private _validateDay = (dayString: string) => {
         // checks if day string passed ends with st, nd, rd, or th
         const dayRegex = /(st|nd|rd|th)$/gm
         const isValid = dayRegex.test(dayString.trim())
@@ -121,25 +134,25 @@ export abstract class DateSolver
         return isValid
     }
 
-    private static _betweenContraintRange(n: number)
+    private _betweenContraintRange(n: number)
     {
         const _inRange = n >= DateSolver.constraint.small && n <= DateSolver.constraint.large
         if(!_inRange) throw new ValidationError('number does not fall in between range!')
         return _inRange
     }
 
-    private static _toMonth(month: string): string
+    private _toMonth(month: string): string
     {
         const m = month as Months
         if(!DateSolver.MonthsSet.has(m)) throw new ValidationError("error - unable to cast month to number.")
-        return MonthsDictionary[m]
+        return DateSolver.MonthsDictionary[m]
     }
 
     /**
      * function will take in int and will add 0 if number is less than or equal to 9 as string, will return number as string if not.
      * @param numberDate number value passed in as value
      */
-    private static toDateNumber = (numberDate: number):string => 
+    private toDateNumber = (numberDate: number):string => 
         numberDate <= 9 
             ? `0${numberDate.toString()}`
                 : numberDate.toString()
@@ -148,7 +161,7 @@ export abstract class DateSolver
      * function will transform a single date
      * @param date Date String will be used in casting...
      */
-    private static _preprocessDate(date: string) : string
+    private _preprocessDate = (date: string) : string =>
     {
         try {
             if(typeof date === 'string' && date.length > 0) 
@@ -161,12 +174,12 @@ export abstract class DateSolver
                 if(Array.isArray(dateSplit) && dateSplit.length === 3) {
                     const [Day, Month, Year] = dateSplit
                     // gives me back a string between 01 - 12 based on Month Abbreviation Passed
-                    const monthNumber = DateSolver._toMonth(Month)
+                    const monthNumber = this._toMonth(Month)
                     let dayNumber = 'dd'
                     let D = parseInt(Day)
-                    if(DateSolver._betweenContraintRange(D) && DateSolver._validateDay(Day)) dayNumber = DateSolver.toDateNumber(D)
-                    DateSolver._betweenContraintRange(parseInt(Year))
-                    return Year + DateSolver._delimitor + monthNumber + DateSolver._delimitor + dayNumber
+                    if(this._betweenContraintRange(D) && this._validateDay(Day)) dayNumber = this.toDateNumber(D)
+                    this._betweenContraintRange(parseInt(Year))
+                    return Year + this._delimitor + monthNumber + this._delimitor + dayNumber
                 }
             } else throw new ValidationError("date is not valid string");
 
@@ -188,10 +201,9 @@ export abstract class DateSolver
      *  string[n]: array of converted date strings
      * @param dates as the Array of strings in format of 1st Mar 1974
      */
-    public static preprocessDates(dates: Array<string>): Array<string>
-    {
+    public preprocessDates = (dates: Array<string>): Array<string> => {
         let outCollection: Array<string> = [];
-        if(Array.isArray(dates) && Array.length > 0) outCollection = dates.map(DateSolver._preprocessDate)
+        if(Array.isArray(dates) && Array.length > 0) outCollection = dates.map(this._preprocessDate)
         return outCollection
     }
 }

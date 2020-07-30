@@ -274,6 +274,18 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
     // 71 32 27 13
     public reverse():void
     {
+        // variables...
+        let prev: nullable<ISLLNode<T>> = null
+        let next: nullable<ISLLNode<T>> = null
+        let current: nullable<ISLLNode<T>> = this.head
+        while (current != null) { 
+            next = current.next; 
+            current.next = prev; 
+            prev = current; 
+            current = next; 
+        } 
+        this.head = prev
+        /*
         // create a var called node and init to the head
         let node = this.head
         // swap head and tail
@@ -295,6 +307,7 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
                 node = next
             }
         }
+        */
 
     }
 
