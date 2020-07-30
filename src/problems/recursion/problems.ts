@@ -1,33 +1,20 @@
 import { fibonacci } from './fibonacci'
-export enum recursionProblem
+import { TwoNumberSum } from './../algoExpert/TwoNumberSum'
+export enum Problems
 {
     all = 0,
     fib = 1,
-    other = 2
+    TwoNumberSum = 2
 }
 
-const inRecursionProblem = (HS : Set<recursionProblem>, target: recursionProblem) =>
-{
-    return HS.has(recursionProblem.all) || HS.has(target)
-}    
+const inRecursionProblem = (HS : Set<Problems>, target: Problems) => HS.has(Problems.all) || HS.has(target)
 
 
-// fib problem...
-/*
-const fibProblem = () => {
-    const _f = new fibonacci()
-    const fib7 = _f.getNumber(7)
-    console.log(fib7)
-    const fib4 = _f.getNumber(4)
-    console.log(fib4)
-    _f.showSeq()
-}*/
 
 const _problems = [
     {
-        key: recursionProblem.fib,
+        key: Problems.fib,
         func: () => {
-            debugger
             const _f = new fibonacci()
             const fib7 = _f.getNumber(7)
             console.log(fib7)
@@ -35,10 +22,12 @@ const _problems = [
             console.log(fib4)
             _f.showSeq()
         }
+    }, {
+        key: Problems.TwoNumberSum,
+        func: () => TwoNumberSum([1,2,3,4,5,6,7,8,9,10], 12)
     }
 ]
 
-export const recursionProblemsSet = (recursionProblems: Array<recursionProblem>) => {
-    const problemSet = new Set(recursionProblems);
-    _problems.forEach(o => inRecursionProblem(problemSet, o.key) && o.func())
+export const problemsSet = (recursionProblems: Array<Problems>) => {
+    _problems.forEach(o => inRecursionProblem(new Set(recursionProblems), o.key) && o.func())
 }

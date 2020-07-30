@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState, ReactNode } from 'react'
 import { PeopleCollection, Person } from './../Data/PeopleSample'
 import { LinkedList } from './../datastructures/SLL'
 import { FamilyName } from './../enums'
-import { debug } from 'console'
+
 
 type animatedFunction = () => ISLLActions<IPerson>
 
@@ -12,6 +12,7 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
 
     // State management
     const [linkedList, changeLinkedList] = useState<ISLLActions<IPerson>>(LinkedList.createNewActions<IPerson>())
+    const [numbersSLL, changeNumbersSLL] = useState<LinkedList<number>>(LinkedList.createNew<number>())
 
     // constant Extra Family Members
     const restOfFerreirasFamily: Array<IPerson> = [
@@ -24,18 +25,25 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
 
         () => {
             // first addition like so...
-            linkedList.push(PeopleCollection.getFerreiraFamily())
+            // linkedList.push(PeopleCollection.getFerreiraFamily())
+            
+            linkedList.push(
+                [
+                    ...PeopleCollection.getFerreiraFamily(),
+                    ...restOfFerreirasFamily
+                ]
+            )
             return linkedList
         },
 
+        /*
         () => {
             // Adding Melinda Gates, Bill Gates Wife
             // Showing you that we can add...
             linkedList.push(restOfFerreirasFamily)
             return linkedList
         },
-        
-        /*
+
         () => {
             // removing last member from Family...
             linkedList.pop()
@@ -80,6 +88,7 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
         },
         */
         () => {
+            // I dont really understand why this works
             linkedList.reverse()
             return linkedList
         }

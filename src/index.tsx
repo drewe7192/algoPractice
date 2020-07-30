@@ -2,7 +2,7 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { prototypesBootstrap } from './prototypes'
 import { App } from './components/App'
-import { recursionProblemsSet, recursionProblem } from './problems/recursion/problems'
+import { problemsSet, Problems } from './problems/recursion/problems'
 import { DateSolver } from './problems/DateProblem'
 
 // CSS files referenced here
@@ -14,8 +14,8 @@ import './css/navigation.css'
 // setting up our prototypes here
 prototypesBootstrap.setUp()
 
-// will run the recursion problemSet
-// recursionProblemsSet([recursionProblem.other])
+// algoexpert questions
+problemsSet([Problems.all])
 
 // Date Problem Starts Over Here...
 const outDates = new DateSolver('-').preprocessDates([

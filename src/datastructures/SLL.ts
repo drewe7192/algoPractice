@@ -270,45 +270,39 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
     }
 
 
-    // 13 27 32 71
-    // 71 32 27 13
+    // Example...
+    // if SLL is like   -> 13 27 32 71
+    // when is reversed -> 71 32 27 13
     public reverse():void
     {
         // variables...
         let prev: nullable<ISLLNode<T>> = null
         let next: nullable<ISLLNode<T>> = null
-        let current: nullable<ISLLNode<T>> = this.head
-        while (current != null) { 
+        let current: nullable<ISLLNode<T>> = this.head// starting at the head...
+
+        // here is where I get lost...
+        while (current != null) {
             next = current.next; 
             current.next = prev; 
             prev = current; 
             current = next; 
         } 
+
+        // 1 go
+        // --------------------
+        // next = 32
+        // current.next = null
+        // prev = 13
+        // current = 32
+
+        // 2 go
+        // --------------------
+        // next = 
+        // current.next = 
+        // prev = 
+        // current = 
+
         this.head = prev
-        /*
-        // create a var called node and init to the head
-        let node = this.head
-        // swap head and tail
-        this.head = this.tail
-        this.tail = node
-
-        // create a var called next
-        let next: nullable<ISLLNode<T>> = null
-        // create a var called prev
-        let prev: nullable<ISLLNode<T>> = null
-
-        // loopingThrough...
-        for(let i = 0; i < this.count; i++) 
-        {
-            if(node && node.next) {
-                next = node.next
-                node.next = prev
-                prev = node
-                node = next
-            }
-        }
-        */
-
     }
 
 }
