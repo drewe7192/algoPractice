@@ -22,4 +22,7 @@ interface ISLLActions<T>
     unshift(value: T):void// Push to Head
     get(indx: number): nullable<ISLLNode<T>>
     set(indx: number, value: T): void
+    insert(indx: number, value: T):void// like push & set...
+    remove(index:number):void// removes and patches SLL at given indx
+    reverse():void
 }

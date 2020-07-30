@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState, ReactNode } from 'react'
 import { PeopleCollection, Person } from './../Data/PeopleSample'
 import { LinkedList } from './../datastructures/SLL'
 import { FamilyName } from './../enums'
+import { debug } from 'console'
 
 type animatedFunction = () => ISLLActions<IPerson>
 
@@ -20,6 +21,7 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
     ]
 
     const _animationActions: Array<animatedFunction> = [
+
         () => {
             // first addition like so...
             linkedList.push(PeopleCollection.getFerreiraFamily())
@@ -57,12 +59,23 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
             return linkedList
         },
         () => {
-            // testing out the get prototype function
             const secondItemFromList = linkedList.get(1)
-            debugger
-            console.prettyLog(secondItemFromList)
-            // will cause an exception!!!
-            linkedList.get(100)
+            console.prettyLog({secondItemFromList})
+            // will NOT get it because it is out of bounds...
+            // linkedList.get(100)
+            linkedList.insert(1, new Person({first: "Diego", last: "Chavez"}, 33, FamilyName.Other))
+            return linkedList
+        },
+        () => {
+            linkedList.set(1, new Person({first: "Ronaldinho", last: "Chavez"}, 33, FamilyName.Other))
+            return linkedList
+        },
+        () => {
+            linkedList.remove(3)
+            return linkedList
+        },
+        () => {
+            linkedList.reverse()
             return linkedList
         }
     ]

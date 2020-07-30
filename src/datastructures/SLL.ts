@@ -22,6 +22,10 @@
  *              + value: 6
  */
 
+import { debug } from "console"
+import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons"
+import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants"
+
 class SLLNode<T> implements ISLLNode<T> {
     public value: T
     public next: nullable<ISLLNode<T>>
@@ -45,6 +49,9 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
         this.count = 0
     }
 
+    /**
+     * Returns the head
+     */
     public getFirstNode(): nullable<ISLLNode<T>>
     {
         return this.head
@@ -170,16 +177,29 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
         return collection
     }
 
+    /**
+     * 
+     * @param indx 
+     */
     public get(indx: number): nullable<ISLLNode<T>> {
-        let returnNode = this.getFirstNode()
-        if(indx === 0) return returnNode
-        if(indx > this.count-1) {
-            // throw "passed indx is greater than this count, out of bounds exception"
-            console.error("passed indx is greater than this count, out of bounds exception")
-            return null
+        let returnNode = null
+        let isOutOfBounds = false
+        if(indx < 0) {
+            isOutOfBounds = true
+            console.error('passed indx must be an integer greater than 0, out of bounds exception')
+        } else if(indx > this.count-1) {
+            isOutOfBounds = true
+            console.error('passed indx is greater than this count, out of bounds exception')
         }
+        if(isOutOfBounds) return returnNode
+
+        // if we are asking for the first index
+        returnNode = this.getFirstNode()
+        if(indx===0) return returnNode
+        if(indx === this.count - 1) return this.tail
+
         let i = 0
-        while(i < indx && returnNode && returnNode.next)
+        while(i !== indx && returnNode && returnNode.next)
         {
             i++
             returnNode = returnNode.next
@@ -192,6 +212,90 @@ export class LinkedList<T> implements ISLLAttributes<T>, ISLLActions<T>
     {
         const foundNode = this.get(indx)
         if(foundNode) foundNode.value = value
+    }
+
+
+    public insert(indx: number, value: T): void
+    {
+        //#region VALIDATION LOGIC FIRST
+        const boundLimit = this.count
+        if(indx < 0 || indx > boundLimit){
+            if(indx < 0) {
+                console.error('index passed cannot be negative')
+            } else {
+                console.error('index passed cannot be greater than ' + boundLimit)
+            }
+            return
+        }
+        //#endregion
+
+        if(indx === 0) {
+            this.unshift(value)
+            return
+        } else if(indx === this.count) {
+            this.push(value)
+            return
+        } else{
+            const priorNode = this.get(indx-1)
+            if(priorNode && priorNode.next) {
+                // ref to what will be our nodes Next....
+                let replacementNode = priorNode.next
+                const newNode = new SLLNode<T>(value)
+                newNode.next = replacementNode
+                priorNode.next = newNode
+            }
+        }
+    }
+
+    public remove(index:number):void
+    {
+        if(index < 0 || index > this.count - 1)
+        {
+            console.error('out of bounds error...')
+            return
+        }
+        if(index === 0) {
+           this.shift()
+           return
+        } else {
+            this.count--
+            const priorNode = this.get(index-1)
+            if(priorNode) {
+                const deleteNode = priorNode.next
+                let newNext = null
+                if(deleteNode && deleteNode.next) newNext = deleteNode.next
+                priorNode.next = newNext
+            }
+        }
+    }
+
+
+    // 13 27 32 71
+    // 71 32 27 13
+    public reverse():void
+    {
+        // create a var called node and init to the head
+        let node = this.head
+        // swap head and tail
+        this.head = this.tail
+        this.tail = node
+
+        // create a var called next
+        let next: nullable<ISLLNode<T>> = null
+        // create a var called prev
+        let prev: nullable<ISLLNode<T>> = null
+
+        // loopingThrough...
+        for(let i = 0; i < this.count; i++) 
+        {
+            if(node && node.next) {
+                next = node.next
+                node.next = prev
+                prev = node
+                node = next
+            }
+        }
+
     }
 
 }

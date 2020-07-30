@@ -2,7 +2,8 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { prototypesBootstrap } from './prototypes'
 import { App } from './components/App'
-import { recursionProblemsSet, recursionProblem } from './recursion/problems'
+import { recursionProblemsSet, recursionProblem } from './problems/recursion/problems'
+import { DateSolver } from './problems/DateProblem'
 
 // CSS files referenced here
 import './css/index.css'
@@ -14,7 +15,24 @@ import './css/navigation.css'
 prototypesBootstrap.setUp()
 
 // will run the recursion problemSet
-recursionProblemsSet([recursionProblem.other])
+// recursionProblemsSet([recursionProblem.other])
+
+// Date Problem Starts Over Here...
+const outDates = DateSolver.preprocessDates([
+    "20th Oct 2052", 
+    "6th Jun 1933", 
+    "26th May 1960", 
+    "20th Sep 1958", 
+    "16th Mar 2068", 
+    "25th May 1912", 
+    "16th Dec 2018", 
+    "6th Jun 1933", 
+    "26th Dec 2061", 
+    "4th Nov 2030", 
+    "28th Jul 1963",
+    "15th Apr 1989"
+])
+console.prettyLog(outDates)
 
 // React Setup here
 const injectionArea = document.getElementById("root") as HTMLDivElement
