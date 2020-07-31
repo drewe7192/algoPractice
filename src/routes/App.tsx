@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
-import { MergeSortPage } from "./../pages/MergeSort";
-import { SLLPage } from "./../pages/SLLPage";
-import HomePage from "./../pages/Root";
+import { MergeSortPage } from "../views/MergeSortPage";
+import { SLLPage } from "../views/SLLPage";
+import HomePage from "../views/HomePage";
 import house from "./../assets/Home.png";
 
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
