@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // predefined dataStore is stored here
-import { PeopleCollection } from "../Containers/PeopleSample";
+import { PeopleCollection } from "../Containers/MockData";
 
 type NameKeys = keyof IPersonName;
 type EmployeeKeys = keyof IEmployee | NameKeys;

@@ -20,7 +20,10 @@
 
 */
 
-export const TwoNumberSum = (nonEmptyArrayOfDistinctIntegers: Array<number>, targetSum: number):Array<number> => {
-    const returnArray: Array<number> = []
-    return returnArray
-}
+export const TwoNumberSum = (
+  nonEmptyArrayOfDistinctIntegers: Array<number>,
+  targetSum: number
+): Array<number> => {
+  const returnArray: Array<number> = [];
+  return returnArray;
+};
