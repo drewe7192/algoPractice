@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { problemsSet, Problems } from "./../utils/problems";
-import { DateSolver } from "./../utils/DateProblem";
+import { problemsSet, Problems } from "./problems";
+import { DateSolver } from "./DateProblem";
 
 problemsSet([Problems.all]);
 

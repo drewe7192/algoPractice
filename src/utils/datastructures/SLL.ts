@@ -23,7 +23,7 @@
  */
 
 import { debug } from "console";
-import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons";
+// import { faRulerHorizontal } from "./node_modules/@fortawesome/free-solid-svg-icons";
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
 class SLLNode<T> implements ISLLNode<T> {

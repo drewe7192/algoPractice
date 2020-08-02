@@ -29,35 +29,33 @@
 */
 
 interface IDenominationBreakdown {
-    '100USD'    : number
-    '50USD'     : number
-    '20USD'     : number
-    '10USD'     : number
-    '5USD'      : number
-    '1USD'      : number
-    '25c'       : number
-    '10c'       : number
-    '5c'        : number
-    '1c'        : number
+  "100USD": number;
+  "50USD": number;
+  "20USD": number;
+  "10USD": number;
+  "5USD": number;
+  "1USD": number;
+  "25c": number;
+  "10c": number;
+  "5c": number;
+  "1c": number;
 }
 
 // Here is where you can work from...
-export function denominateMoney(moneyIn: number): IDenominationBreakdown
-{
-    let moneyOut = {
-        '100USD'    : 0,
-        '50USD'     : 0,
-        '20USD'     : 0,
-        '10USD'     : 0,
-        '5USD'      : 0,
-        '1USD'      : 0,
-        '25c'       : 0,
-        '10c'       : 0,
-        '5c'        : 0,
-        '1c'        : 0        
-    }
+export function denominateMoney(moneyIn: number): IDenominationBreakdown {
+  let moneyOut = {
+    "100USD": 0,
+    "50USD": 0,
+    "20USD": 0,
+    "10USD": 0,
+    "5USD": 0,
+    "1USD": 0,
+    "25c": 0,
+    "10c": 0,
+    "5c": 0,
+    "1c": 0,
+  };
 
-    // do some validation here...
-    return moneyOut
-
+  // do some validation here...
+  return moneyOut;
 }

@@ -1,14 +1,13 @@
 import React, { FC, useEffect, useState, ReactNode } from "react";
 
 import { PeopleCollection, Person } from "../Containers/MockData";
-import { LinkedList } from "../utils/datastructures/SLL";
+import { LinkedList } from "../utils/dataStructures/SLL";
 import { FamilyName } from "../enums";
 
 type animatedFunction = () => ISLLActions<IPerson>;
 
 interface ISLLPageProps {}
 export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
-  // State management
   const [linkedList, changeLinkedList] = useState<ISLLActions<IPerson>>(
     LinkedList.createNewActions<IPerson>()
   );
@@ -16,7 +15,6 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
     LinkedList.createNew<number>()
   );
 
-  // constant Extra Family Members
   const restOfFerreirasFamily: Array<IPerson> = [
     new Person({ first: "Deborah", last: "Ribeiro" }, 60, FamilyName.Ferreira),
     new Person({ first: "Eduardo", last: "Ferreira" }, 65, FamilyName.Ferreira),
@@ -25,9 +23,6 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
 
   const _animationActions: Array<animatedFunction> = [
     () => {
-      // first addition like so...
-      // linkedList.push(PeopleCollection.getFerreiraFamily())
-
       linkedList.push([
         ...PeopleCollection.getFerreiraFamily(),
         ...restOfFerreirasFamily,
@@ -101,12 +96,9 @@ export const SLLPage: FC<ISLLPageProps> = (props: ISLLPageProps) => {
       Array.isArray(animationActionsCopy) &&
       animationActionsCopy.length > 0
     ) {
-      // gets from beg of collection...
       const act = animationActionsCopy.shift();
 
-      // timing function...
       setTimeout(() => {
-        // new collection will now have one less func
         setAnimationActs(animationActionsCopy);
         if (act) {
           const copy = Object.assign({}, act());

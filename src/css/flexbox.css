@@ -1,26 +1,41 @@
-
 .flex-item {
-    display: flex;
+  display: flex;
+  order: 3;
 }
 
 .flex-item.vertical {
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .flex-item.wrapped {
-    flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
-.flex-item.space-evenly{
-    justify-content: space-evenly;
+.flex-item.space-evenly {
+  justify-content: space-evenly;
 }
 
-.flex-item > .stretched{
-    flex: 1;
+.flex-item > .stretched {
+  flex: 1 1 1 1;
 }
 
 .flex-item.centered {
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 40%;
+  display: flex;
+  flex-flow: wrap;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}

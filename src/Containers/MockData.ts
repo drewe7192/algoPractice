@@ -1,4 +1,5 @@
 import { FamilyName } from "../enums";
+import purpose from "./../assets/purpose.png";
 
 export class Person implements IPerson {
   public name: IName;
@@ -133,3 +134,41 @@ export abstract class PeopleCollection {
     return this.EmployeeData;
   }
 }
+
+export const homePageTitle = {
+  title: "algoPractice",
+  imgSrc: purpose,
+  description:
+    "This is for sure a working title. This subtitle is also a working title",
+};
+
+export const homePageCellData = [
+  /*
+        {
+            title: 'Github',
+            imgSrc: github,
+            link: {
+                target: '_blank',
+                display: 'https://github.com/drewe7192/algoPractice',
+                href: 'https://github.com/drewe7192/algoPractice'
+            },
+        },
+        */
+  {
+    title: "algoPractice",
+    imgSrc: purpose,
+    description:
+      "This is for sure a working title. This subtitle is also a working title",
+  },
+  /*
+          {
+              title: 'License',
+              imgSrc: scale,
+              link: {
+                  target: '_blank',
+                  display: 'MIT License',
+                  href: 'https://opensource.org/licenses/MIT'
+              },
+          }
+          */
+];
