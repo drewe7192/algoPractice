@@ -1,15 +1,6 @@
 a.houseLink :hover {
   border: 1px dashed #febd69;
 }
-/* .hamBurgerLink :hover {
-  border: 1px dashed #febd69;
-} */
-/* 
-.selection-zone .selected,
-a.selected img {
-  border: 1px dashed #febd69;
-  padding: 5px;
-} */
 
 .subNavigation_area {
   width: 0%;
@@ -23,10 +14,11 @@ a.selected img {
 .subNavigation_area.display {
   width: 100%;
   transform: translateX(0%);
+  position: relative;
 }
 
 .selection-zone {
-  background: #232f3e; /*aliceblue*/
+  background: #232f3e;
 }
 .selection-zone h1 {
   background: aliceblue;
@@ -64,7 +56,6 @@ a.selected img {
 }
 
 .navigation .home {
-  /* margin-left: 5vw; */
   cursor: pointer;
 }
 
