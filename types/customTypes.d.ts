@@ -9,6 +9,21 @@ declare module "*.gif" {
     export default value;
 }
 
+
+interface ITileData<enumRef> {
+    title: string
+    isShowing: boolean
+    imgSrc: string
+    gifSrc: string
+    to: string,
+    group: enumRef
+}
+
+interface IGroupingData<enumRef> {
+    group: enumRef
+    groupName: string
+}
+
 interface IName {
     first: string
     last: string
@@ -58,9 +73,4 @@ interface Console {
 
 interface Number {
     toCurrency: () => string;
-}
-
-interface ObjectConstructor
-{
-    shallowCopy(): void
 }

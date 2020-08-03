@@ -1,7 +1,8 @@
 import React, { FC, useState } from "react"
-import { MergeSortPage } from "../views/MergeSortPage"
-import { SLLPage } from "../views/SLLPage"
-import HomePage from "../views/HomePage"
+import { MergeSortPage } from "./../views/MergeSortPage"
+import { SLLPage } from "./../views/SLLPage"
+import { Groupings, RoutesInfo } from './../routes/routesData'
+import { Tiles } from './../routes/Tiles'
 import house from "./../assets/Home.png"
 
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
@@ -11,10 +12,6 @@ export const App: FC = () => {
   const hamburgerButtonToggle = (): void => setMenuShown(!menuIsShown);
 
   const hamburgerButton = () => {
-    // const lineCount = 4;
-    // const allLines: Array<JSX.Element> = [];
-    // for (let i = 0; i < lineCount; i++)
-    //   allLines.push(<div key={`line-${i}`} className="line"></div>);
     return (
       <div>
         <svg onClick={hamburgerButtonToggle} className="hamBurgerLink" viewBox="0 0 100 80" width="40" height="40">
@@ -23,13 +20,6 @@ export const App: FC = () => {
           <rect y="60" width="100" height="20"></rect>
         </svg>
       </div>
-
-      //   <div
-      //     onClick={hamburgerButtonToggle}
-      //     className="centered flex-item hamburger_button vertical"
-      //   >
-      //     {allLines}
-      //   </div>
     );
   };
 
@@ -44,6 +34,28 @@ export const App: FC = () => {
     );
   };
 
+  /**
+   * THIS IS THE LIST INSIDE THE HAMBURGER MENU
+   */
+  const buildHamMenuList = (): Array<JSX.Element> | null => {
+
+    if(!Array.isArray(Groupings) || Groupings.length === 0) return null
+    return Groupings.map(groupingObject => {
+
+      const { group, groupName } = groupingObject
+
+      const options = RoutesInfo.filter(r => r.group === group).map(gr => {
+        const { title, to } = gr
+        return <NavLink key={title} onClick={hamburgerButtonToggle} activeClassName="selected" to={to} className="noDecoration"><span>{title}</span></NavLink>
+      })
+
+      return <div key={groupName}>
+        <h1>{groupName}</h1>
+        {options}
+      </div>
+    })
+  }
+
   const getSubNav = () => {
     let className = "flex-item subNavigation_area";
     let _className = "display";
@@ -53,29 +65,12 @@ export const App: FC = () => {
       <div className={className}>
         <div className="selection-zone stretched">
           <div className={_className}>
-            <div>
-              <h1>Sorting</h1>
-              <NavLink onClick={hamburgerButtonToggle} activeClassName="selected" to="/MergeSort" className="noDecoration">
-                <span>Merge Sort</span>
-              </NavLink>
-            </div>
-            <div>
-              <h1>Collections</h1>
-              <NavLink
-                onClick={hamburgerButtonToggle}
-                activeClassName="selected"
-                to="/SLL"
-                className="noDecoration"
-              >
-                <span>Singly Linked List</span>
-              </NavLink>
-            </div>
+
+            {buildHamMenuList()}
+
           </div>
         </div>
-        <div
-          className="shadow-zone clickArea"
-          onClick={hamburgerButtonToggle}
-        ></div>
+        <div className="shadow-zone clickArea" onClick={hamburgerButtonToggle}></div>
       </div>
     );
   };
@@ -94,7 +89,7 @@ export const App: FC = () => {
               <SLLPage />
             </Route>
             <Route exact path="/">
-              <HomePage />
+              <Tiles tileData={RoutesInfo}/>
             </Route>
           </Switch>
         </div>

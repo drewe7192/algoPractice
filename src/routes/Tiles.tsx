@@ -1,19 +1,12 @@
 import React, { FC, ReactNode } from 'react'
 import { Link } from "react-router-dom"
-
-export interface ITileData {
-    title: string
-    isShowing: boolean
-    imgSrc: string
-    gifSrc: string
-    to: string
-}
+import { routingGroup } from './routesData'
 
 interface ITilesProps {
-    tileData: Array<ITileData>
+    tileData: Array<ITileData<routingGroup>>
 }
 
-export const HomePageTiles: FC<ITilesProps> = (props: ITilesProps) => {
+export const Tiles: FC<ITilesProps> = (props: ITilesProps) => {
 
     const { tileData } = props
 
@@ -40,6 +33,8 @@ export const HomePageTiles: FC<ITilesProps> = (props: ITilesProps) => {
         })
     }
     
-    return <>{renderTiles()}</>
+    return <div className="flex-item description-row fullDim wrapped auto-overflow">
+        {renderTiles()}
+    </div>
 
 }
