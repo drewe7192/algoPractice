@@ -33,8 +33,6 @@ export const Tiles: FC<ITilesProps> = (props: ITilesProps) => {
         })
     }
     
-    return <div className="flex-item description-row fullDim wrapped auto-overflow">
-        {renderTiles()}
-    </div>
+    return <>{renderTiles()}</>
 
 }
