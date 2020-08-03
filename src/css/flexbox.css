@@ -1,6 +1,5 @@
 .flex-item {
   display: flex;
-  order: 3;
 }
 
 .flex-item.vertical {
@@ -15,9 +14,11 @@
   justify-content: space-evenly;
 }
 
-.flex-item > .stretched {
-  flex: 1 1 1 1;
+
+.flex-item > .stretched{
+  flex: 1;
 }
+
 
 .flex-item.centered {
   justify-content: center;
