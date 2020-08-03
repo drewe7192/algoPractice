@@ -22,7 +22,20 @@ a.houseLink :hover {
 }
 .selection-zone h1 {
   background: aliceblue;
+  padding: 10px;
 }
+
+.selection-zone .display a {
+  color: #febd69;
+  padding: 20px;
+  display: block;
+}
+
+.selection-zone .display a:hover {
+  background: #febd69;
+  color: #232f3e;
+}
+
 .shadow-zone {
   background: #37475a9e;
   flex: 2;
@@ -65,3 +78,4 @@ a.houseLink :hover {
   padding: 20px;
   margin: 10px;
 }
+

@@ -66,12 +66,7 @@ export const App: FC = () => {
           <div className={_className}>
             <div>
               <h1>Sorting</h1>
-              <NavLink
-                onClick={hamburgerButtonToggle}
-                activeClassName="selected"
-                to="/MergeSort"
-                className="noDecoration"
-              >
+              <NavLink onClick={hamburgerButtonToggle} activeClassName="selected" to="/MergeSort" className="noDecoration">
                 <span>Merge Sort</span>
               </NavLink>
             </div>
