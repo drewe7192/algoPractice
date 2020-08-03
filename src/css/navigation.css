@@ -14,7 +14,8 @@ a.houseLink :hover {
 .subNavigation_area.display {
   width: 100%;
   transform: translateX(0%);
-  position: relative;
+  position: absolute;
+  z-index: 2020;
 }
 
 .selection-zone {

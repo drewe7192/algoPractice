@@ -1,8 +1,8 @@
-import React, { FC, useState } from "react";
-import { MergeSortPage } from "../views/MergeSortPage";
-import { SLLPage } from "../views/SLLPage";
-import HomePage from "../views/HomePage";
-import house from "./../assets/Home.png";
+import React, { FC, useState } from "react"
+import { MergeSortPage } from "../views/MergeSortPage"
+import { SLLPage } from "../views/SLLPage"
+import HomePage from "../views/HomePage"
+import house from "./../assets/Home.png"
 
 import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
 
@@ -17,13 +17,7 @@ export const App: FC = () => {
     //   allLines.push(<div key={`line-${i}`} className="line"></div>);
     return (
       <div>
-        <svg
-          onClick={hamburgerButtonToggle}
-          className="hamBurgerLink"
-          viewBox="0 0 100 80"
-          width="40"
-          height="40"
-        >
+        <svg onClick={hamburgerButtonToggle} className="hamBurgerLink" viewBox="0 0 100 80" width="40" height="40">
           <rect width="100" height="20"></rect>
           <rect y="30" width="100" height="20"></rect>
           <rect y="60" width="100" height="20"></rect>
@@ -43,12 +37,7 @@ export const App: FC = () => {
     return (
       <div className="navigation">
         {hamburgerButton()}
-        <NavLink
-          exact={true}
-          className="houseLink"
-          //   activeClassName="selected"
-          to="/"
-        >
+        <NavLink exact={true} className="houseLink" to="/">
           <img height="40vh" className="home" src={house} alt="home page" />
         </NavLink>
       </div>

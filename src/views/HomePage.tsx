@@ -1,6 +1,9 @@
 import React from "react";
 import linkedListPng from './../assets/LinkedList.png'
 import sortingPng from './../assets/sorting.png'
+import sortingGif from './../assets/sorting.gif'
+import linkedListGif from './../assets/LinkedList.gif'
+
 
 import { HomePageTiles, ITileData } from './../routes/HomePageTiles'
 
@@ -10,14 +13,14 @@ export default () => {
     {
       isShowing: true,
       imgSrc: linkedListPng,
-      gifSrc: 'linkedListGif',
+      gifSrc: linkedListGif,
       title: 'Linked List Tile',
       to: '/SLL'
     },
     {
       isShowing: true,
       imgSrc: sortingPng,
-      gifSrc: 'sortingGif',
+      gifSrc: sortingGif,
       title: 'Merge Sort',
       to: '/MergeSort'
     },
