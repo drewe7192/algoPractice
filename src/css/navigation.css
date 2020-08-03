@@ -67,3 +67,10 @@ a.selected img {
   /* margin-left: 5vw; */
   cursor: pointer;
 }
+
+.HomePageTile{
+  cursor: pointer;
+  background-color: lightblue;
+  padding: 20px;
+  margin: 10px;
+}

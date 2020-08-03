@@ -144,3 +144,14 @@ body,
 .noDisplay {
   display: none;
 }
+
+.noOverflow {
+  overflow: hidden;
+}
+.img-wrapper > img {
+  transform: scale(1);
+  transition: all 2s;
+}
+.img-wrapper > img:hover {
+  transform: scale(1.1);
+}
