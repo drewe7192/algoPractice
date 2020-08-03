@@ -17,6 +17,8 @@ interface ITileData<enumRef> {
     gifSrc: string
     to: string,
     group: enumRef
+    exact: boolean
+    Component: React.FC<{}>
 }
 
 interface IGroupingData<enumRef> {

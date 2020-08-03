@@ -37,6 +37,11 @@ a.houseLink :hover {
   color: #232f3e;
 }
 
+a.noDecoration.selected {
+  background: antiquewhite;
+}
+
+
 .shadow-zone {
   background: #37475a9e;
   flex: 2;

@@ -1,99 +1,37 @@
 import React, { FC, useState } from "react"
-import { MergeSortPage } from "./../views/MergeSortPage"
-import { SLLPage } from "./../views/SLLPage"
-import { Groupings, RoutesInfo } from './../routes/routesData'
-import { Tiles } from './../routes/Tiles'
-import house from "./../assets/Home.png"
-
-import { HashRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import HomePage from './../views/HomePage'
+import { RoutesInfo } from './routesData'
+import NavigationHeader from './NavHead'
+import HamburgerSlider from './HamburgerSlider'
+import { HashRouter as Router, Switch, Route } from "react-router-dom"
 
 export const App: FC = () => {
   const [menuIsShown, setMenuShown] = useState<boolean>(false);
-  const hamburgerButtonToggle = (): void => setMenuShown(!menuIsShown);
+  const hamburgerButtonToggle = (): void => setMenuShown(!menuIsShown)
 
-  const hamburgerButton = () => {
-    return (
-      <div>
-        <svg onClick={hamburgerButtonToggle} className="hamBurgerLink" viewBox="0 0 100 80" width="40" height="40">
-          <rect width="100" height="20"></rect>
-          <rect y="30" width="100" height="20"></rect>
-          <rect y="60" width="100" height="20"></rect>
-        </svg>
-      </div>
-    );
-  };
-
-  const getNavigation = () => {
-    return (
-      <div className="navigation">
-        {hamburgerButton()}
-        <NavLink exact={true} className="houseLink" to="/">
-          <img height="40vh" className="home" src={house} alt="home page" />
-        </NavLink>
-      </div>
-    );
-  };
-
-  /**
-   * THIS IS THE LIST INSIDE THE HAMBURGER MENU
-   */
-  const buildHamMenuList = (): Array<JSX.Element> | null => {
-
-    if(!Array.isArray(Groupings) || Groupings.length === 0) return null
-    return Groupings.map(groupingObject => {
-
-      const { group, groupName } = groupingObject
-
-      const options = RoutesInfo.filter(r => r.group === group).map(gr => {
-        const { title, to } = gr
-        return <NavLink key={title} onClick={hamburgerButtonToggle} activeClassName="selected" to={to} className="noDecoration"><span>{title}</span></NavLink>
-      })
-
-      return <div key={groupName}>
-        <h1>{groupName}</h1>
-        {options}
-      </div>
+  /* WILL DYNAMICALLY RENDER ROUTING BASED ON CONFIGURATION OBJECT LISTED IN  routesData.ts*/
+  const extractRoutesFromRoutesInfo = () => RoutesInfo.map(r => {
+      const { exact, Component, to } = r
+      return <Route key={to} exact={exact} path={to}>
+        <Component />
+      </Route>
     })
-  }
-
-  const getSubNav = () => {
-    let className = "flex-item subNavigation_area";
-    let _className = "display";
-    if (menuIsShown) className += " display";
-    else _className = "noDisplay";
-    return (
-      <div className={className}>
-        <div className="selection-zone stretched">
-          <div className={_className}>
-
-            {buildHamMenuList()}
-
-          </div>
-        </div>
-        <div className="shadow-zone clickArea" onClick={hamburgerButtonToggle}></div>
-      </div>
-    );
-  };
 
   return (
     <Router>
-      {getSubNav()}
+      {/* NAV2 - Hamburger Sliding Menu */}
+      <HamburgerSlider onHamburgerClick={hamburgerButtonToggle} menuIsShown={menuIsShown}/>
       <div className="flex-item vertical fullDim">
-        {getNavigation()}
+        {/*  THIS IS THE BLUE BAR ON TOP OF ALL PAGES */}
+        <NavigationHeader onHamburgerClick={hamburgerButtonToggle}/>
         <div className="main stretched fullDim">
           <Switch>
-            <Route exact path="/MergeSort">
-              <MergeSortPage />
-            </Route>
-            <Route exact path="/SLL">
-              <SLLPage />
-            </Route>
-            <Route exact path="/">
-              <Tiles tileData={RoutesInfo}/>
-            </Route>
+            {extractRoutesFromRoutesInfo()}
+            {/*MANUALLY ADDING THE HOME PAGE LIKE THIS BECAUSE WE ARE NOT ADDING THIS TO LIST || HAMBURGER*/}
+            <Route exact path="/"><HomePage/></Route>
           </Switch>
         </div>
       </div>
     </Router>
-  );
-};
+  )
+}
