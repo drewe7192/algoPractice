@@ -1,5 +1,5 @@
-import { PeopleCollection } from "./MockData";
-import { LinkedList } from "../utils/dataStructures/SLL";
+import { PeopleCollection } from "./MockData"
+import { LinkedList } from "./../utils/datastructures/SLL"// './../utils/datastructures/SLL'
 
 // quick overview of what program can do
 interface IProgramActions {
@@ -43,17 +43,4 @@ export class Program implements IProgramActions {
     });
     SLLInstance.printAllNodes();
   }
-
-  // public getAppSquares(): Array<IAppSquare> {
-  //   return [
-  //     {
-  //       title: "Merge Sort",
-  //       func: this.mergeSortCode,
-  //     },
-  //     {
-  //       title: "SLL",
-  //       func: this.SLLCode,
-  //     },
-  //   ];
-  // }
 }
