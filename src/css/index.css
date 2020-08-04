@@ -8,7 +8,6 @@
   font-family: 'Lobster', cursive;
   letter-spacing: 10px;
   font-size: 40px;
-  line-height: 60px;
 }
 
 a {
@@ -101,8 +100,6 @@ body,
 
 .SLL-List {
   padding: 30px;
-  border: 1px dashed #888;
-  /*background: #febd69;*/
   background: linear-gradient(130deg, #fc8c61, #febd69);
 }
 
@@ -138,9 +135,9 @@ body,
 }
 
 .description-row {
+  padding: 30px;
   align-items: baseline;
   justify-content: space-around;
-  margin-bottom: 10pc;
 
 }
 
@@ -150,8 +147,8 @@ body,
   text-overflow: ellipsis;
 }
 
-.navigation > * {
-  margin: 0 10px;
+.navigation > div {
+  padding: 10px 0;
 }
 
 .noDisplay {

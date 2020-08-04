@@ -1,25 +1,24 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from "react"
 import HomePage from './../views/HomePage'
 import { RoutesInfo } from './routesData'
 import NavigationHeader from './NavHead'
 import HamburgerSlider from './HamburgerSlider'
-import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from "react-router-dom"
 
-interface IAppProps {}
-export const App: FC<IAppProps> = (props: IAppProps) => {
-
-  // State if the HamburgerMenuIsShowing or NotShowing
-  const [menuIsShown, setMenuShown] = useState<boolean>(false)
-  // function that toggles the state of the HamburgerMenuIsShowing state
+export const App: FC = () => {
+  const [menuIsShown, setMenuShown] = useState<boolean>(false);
   const hamburgerButtonToggle = (): void => setMenuShown(!menuIsShown)
 
   /* WILL DYNAMICALLY RENDER ROUTING BASED ON CONFIGURATION OBJECT LISTED IN  routesData.ts*/
-  const extractRoutesFromRoutesInfo = () => RoutesInfo.map(r =>  
-    <Route key={r.to} exact={r.exact} path={r.to}>
-      <r.Component />
-    </Route>)
+  const extractRoutesFromRoutesInfo = () => RoutesInfo.map(r => {
+      const { exact, Component, to } = r
+      return <Route key={to} exact={exact} path={to}>
+        <Component />
+      </Route>
+    })
 
-  return (<Router>
+  return (
+    <Router>
       {/* NAV2 - Hamburger Sliding Menu */}
       <HamburgerSlider onHamburgerClick={hamburgerButtonToggle} menuIsShown={menuIsShown}/>
       <div className="flex-item vertical fullDim">
@@ -33,5 +32,6 @@ export const App: FC<IAppProps> = (props: IAppProps) => {
           </Switch>
         </div>
       </div>
-    </Router>)
+    </Router>
+  )
 }
