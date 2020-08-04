@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react"
+import React, { FC } from "react"
 import { Groupings, RoutesInfo } from "./../routes/routesData"
 import { NavLink } from "react-router-dom"
 

@@ -7,7 +7,6 @@ import linkedListGif from './../assets/LinkedList.gif'
 // PAGES
 import { MergeSortPage } from "./../views/MergeSortPage"
 import { SLLPage } from "./../views/SLLPage"
-import HomePage from './../views/HomePage'
 
 export enum routingGroup {
   Sorting = 0,
@@ -39,7 +38,6 @@ export const RoutesInfo: Array<ITileData<routingGroup>> = [
 ]
 
 export const Groupings: Array<IGroupingData<routingGroup>> = [
-
   {
     group: routingGroup.Collection,
     groupName: 'Sorting'

@@ -1,7 +1,7 @@
 import React, { FC } from "react"
 import { NavLink } from "react-router-dom"
-// import house from "./../assets/Home.svg"
-import house from "./../assets/cabin.png"
+import house from "./../assets/Home.svg"
+// import house from "./../assets/cabin.png"
 
 interface INavHeader {
   onHamburgerClick: VoidFunction
@@ -11,8 +11,10 @@ const NavigationHeader: FC<INavHeader> = (props: INavHeader) => {
   const { onHamburgerClick } = props
 
   // Responsible for making the little house on the top of the Header...
+  // activeClassName="inHomePage"
   const makeHouseNavLink = () => (
-    <NavLink exact={true} className="flex-item houseLink" to="/" activeClassName="inHomePage">
+
+    <NavLink exact={true} className="flex-item houseLink" to="/">
       <img height="40" className="home" src={house} alt="home page" />
     </NavLink>
   );
@@ -36,8 +38,8 @@ const NavigationHeader: FC<INavHeader> = (props: INavHeader) => {
 
   return (
     <div className="navigation">
-      {/* makeBurgerButton() */}
-      {makeBurger(3)}
+      {makeBurgerButton()}
+      {/*makeBurger(3)*/}
       {makeHouseNavLink()}
     </div>
   );
