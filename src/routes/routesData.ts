@@ -34,7 +34,7 @@ export const RoutesInfo: Array<ITileData<routingGroup>> = [
       group: routingGroup.Sorting,
       exact: true,
       Component: MergeSortPage
-    },
+    }
 ]
 
 export const Groupings: Array<IGroupingData<routingGroup>> = [
