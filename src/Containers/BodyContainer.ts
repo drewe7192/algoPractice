@@ -1,5 +1,5 @@
-import { PeopleCollection } from "./MockData"
-import { LinkedList } from "./../utils/datastructures/SLL"// './../utils/datastructures/SLL'
+import { PeopleCollection } from "./MockData";
+import { LinkedList } from "./../utils/dataStructures/SLL";
 
 // quick overview of what program can do
 interface IProgramActions {
