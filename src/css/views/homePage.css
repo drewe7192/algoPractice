@@ -1,0 +1,12 @@
+.AppIntro {
+    height: 10pc;
+}
+
+.houseLink.inHomePage {
+    /*#febd69;*/
+    /*burlywood;*/
+    /*linear-gradient(130deg, #fc8c61, #febd69);*/
+    /*ghostwhite*/
+    background: ghostwhite;
+    border-radius: 10px;
+}

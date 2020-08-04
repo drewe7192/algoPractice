@@ -8,6 +8,7 @@
   font-family: 'Lobster', cursive;
   letter-spacing: 10px;
   font-size: 40px;
+  line-height: 60px;
 }
 
 a {
@@ -137,9 +138,9 @@ body,
 }
 
 .description-row {
-  padding: 30px;
   align-items: baseline;
   justify-content: space-around;
+  margin-bottom: 10pc;
 
 }
 
@@ -149,8 +150,8 @@ body,
   text-overflow: ellipsis;
 }
 
-.navigation > div {
-  padding: 10px 0;
+.navigation > * {
+  margin: 0 10px;
 }
 
 .noDisplay {

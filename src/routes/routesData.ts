@@ -24,7 +24,7 @@ export const RoutesInfo: Array<ITileData<routingGroup>> = [
       to: '/SLL',
       group: routingGroup.Collection,
       exact: true,
-      Component: MergeSortPage
+      Component: SLLPage
     },
     {
       isShowing: true,
@@ -34,7 +34,7 @@ export const RoutesInfo: Array<ITileData<routingGroup>> = [
       to: '/MergeSort',
       group: routingGroup.Sorting,
       exact: true,
-      Component: SLLPage
+      Component: MergeSortPage
     },
 ]
 
