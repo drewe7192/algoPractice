@@ -1,3 +1,7 @@
+a.houseLink :hover {
+  border: 1px dashed #febd69;
+}
+
 .subNavigation_area {
   width: 0%;
   height: 100%;
@@ -49,7 +53,6 @@ a.noDecoration.selected {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 5px;
 }
 
 .navigation .hamburger_button {
@@ -82,17 +85,3 @@ a.noDecoration.selected {
   margin: 10px;
 }
 
-.navigation .burgerWrapper {
-  width: 40px;
-  height: 40px;
-  justify-content: space-evenly;
-  align-items: flex-end;
-  cursor: pointer;
-}
-
-.navigation .burgerWrapper > .line {
-  background: black;
-  height: 4px;
-  width: 100%;
-  border-radius: 6px;
-}
