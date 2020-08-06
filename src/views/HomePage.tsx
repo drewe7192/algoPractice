@@ -1,7 +1,6 @@
-import React from "react";
-import { Tiles } from "./../routes/Tiles";
-import { RoutesInfo } from "./../routes/routesData";
-import Logo from "./../assets/purpose.png";
+import React from 'react'
+import { Tiles } from "./../routes/Tiles"
+import Logo from "./../assets/purpose.png"
 
 export default () => (
   <div className="auto-overflow flex-item fullDim vertical" id="homePage">
@@ -15,7 +14,7 @@ export default () => (
       A place to pratice algos and stuff(this subdescription is pending)
     </h5>
     <div className="description-row flex-item stretched">
-      <Tiles tileData={RoutesInfo} />
+      <Tiles/>
     </div>
   </div>
 );

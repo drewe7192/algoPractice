@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, ReactNode } from "react"
+import React, { FC, useEffect, useState, ReactNode } from 'react'
 import { PeopleCollection, Person } from "../Containers/MockData"
 import { LinkedList } from "./../utils/datastructures/SLL"
 import { FamilyName } from "../enums"

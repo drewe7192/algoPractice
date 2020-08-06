@@ -1,53 +1,33 @@
-import { FamilyName } from "../enums";
-import purpose from "./../assets/purpose.png";
+import { FamilyName } from "../enums"
 
 export class Person implements IPerson {
-  public name: IName;
-  public age: number;
-  public familyName: FamilyName;
+  public name: IName
+  public age: number
+  public familyName: FamilyName
 
   constructor(name: IName, age: number, family: FamilyName) {
-    this.name = name;
-    this.age = age;
-    this.familyName = family;
+    this.name = name
+    this.age = age
+    this.familyName = family
   }
 
   get fullName(): string {
-    const { first, last, middle } = this.name;
-    if (middle) return `${first} ${middle} ${last}`;
-    return `${first} ${last}`;
+    const { first, last, middle } = this.name
+    if (middle) return `${first} ${middle} ${last}`
+    return `${first} ${last}`
   }
 
-  public toEmployee(
-    this: IPerson,
-    profession: string,
-    salary: number,
-    email: string
-  ): IEmployee {
-    return new Employee(
-      this.name,
-      this.age,
-      this.familyName,
-      profession,
-      salary,
-      email
-    );
+  public toEmployee(this: IPerson, profession: string, salary: number, email: string): IEmployee {
+    return new Employee(this.name, this.age, this.familyName, profession, salary, email)
   }
 }
 
 class Employee extends Person implements IPerson, IEmployee {
-  public salary: number;
-  public profession: string;
-  public email: string;
+  public salary: number
+  public profession: string
+  public email: string
 
-  constructor(
-    name: IName,
-    age: number,
-    family: FamilyName,
-    profession: string,
-    salary: number,
-    email: string
-  ) {
+  constructor(name: IName, age: number, family: FamilyName, profession: string, salary: number, email: string) {
     super(name, age, family);
     this.salary = salary;
     this.profession = profession;
@@ -60,32 +40,32 @@ export abstract class PeopleCollection {
     { first: "Drew", last: "Sutherland" },
     26,
     FamilyName.Sutherland
-  );
+  )
   private static readonly Drew: Person = new Person(
     { first: "Felipe", last: "Ferreira", middle: "Dutra" },
     31,
     FamilyName.Ferreira
-  );
+  )
   private static readonly Rebecca: Person = new Person(
     { first: "Rebecca", last: "Amos", middle: "Rose" },
     31,
     FamilyName.Ferreira
-  );
+  )
   private static readonly Sierra: Person = new Person(
     { first: "Sierra", last: "Applewhite" },
     25,
     FamilyName.Applewhite
-  );
+  )
   private static readonly Arya: Person = new Person(
     { first: "Arya", middle: "Ann", last: "Ferreira" },
     2 / 52,
     FamilyName.Ferreira
-  );
+  )
   private static readonly Bill: Person = new Person(
     { first: "Bill", last: "Games" },
     64,
     FamilyName.Gates
-  );
+  )
 
   private static readonly _Data: Array<IPerson> = [
     PeopleCollection.Felipe,
@@ -94,7 +74,7 @@ export abstract class PeopleCollection {
     PeopleCollection.Sierra,
     PeopleCollection.Arya,
     PeopleCollection.Bill,
-  ];
+  ]
 
   // Used in MergeSort.tsx
   private static readonly EmployeeData: Array<IEmployee> = [
@@ -118,7 +98,7 @@ export abstract class PeopleCollection {
       11500000000,
       "billssemail@gmail.com"
     ),
-  ];
+  ]
 
   public static getSampleData() {
     return PeopleCollection._Data;
@@ -127,7 +107,7 @@ export abstract class PeopleCollection {
   public static getFerreiraFamily(): Array<IPerson> {
     return PeopleCollection._Data.filter(
       (name) => name.familyName === FamilyName.Ferreira
-    );
+    )
   }
 
   public static getEmployeeData() {

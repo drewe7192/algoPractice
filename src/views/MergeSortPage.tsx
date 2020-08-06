@@ -1,6 +1,5 @@
-import React, { FC, useState, useEffect, ReactNode } from "react";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { FC, useState, useEffect, ReactNode } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faSortAlphaUp,
   faSortAlphaDown,

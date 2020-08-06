@@ -1,48 +1,34 @@
-import React, { FC } from "react"
-import { Groupings, RoutesInfo } from "./../routes/routesData"
-import { NavLink } from "react-router-dom"
+import React, { FC } from 'react'
+import { NavLink } from 'react-router-dom'
+import RoutingData from './routesInstance'
 
 interface IHamburgerSliderprops {
   onHamburgerClick: VoidFunction;
   menuIsShown: boolean;
 }
 
-const HamburgerSlider: FC<IHamburgerSliderprops> = (
-  props: IHamburgerSliderprops
-) => {
+/**
+ * Hamburger Sliding Menu on the left
+ * @param props are in shape of IHamburgerSliderprops...
+ */
+const HamburgerSlider: FC<IHamburgerSliderprops> = (props: IHamburgerSliderprops) => {
   const { onHamburgerClick, menuIsShown } = props;
 
-  {
-    /* NAV2 */
-  }
-  const buildHamMenuList = (): Array<JSX.Element> | null => {
-    if (!Array.isArray(Groupings) || Groupings.length === 0) return null;
-    return Groupings.map((groupingObject) => {
-      const { group, groupName } = groupingObject;
-
-      const options = RoutesInfo.filter((r) => r.group === group).map((gr) => {
-        const { title, to } = gr;
-        return (
-          <NavLink
-            key={title}
-            onClick={onHamburgerClick}
-            activeClassName="selected"
-            to={to}
-            className="noDecoration"
-          >
+  const buildHamburgerMenu = (): Array<JSX.Element> => {
+    return RoutingData.getRouteParents().map(P => {
+      const { name, children } = P
+      const subOptions = children.map(c => {
+        const { title, to } = c
+        return (<NavLink key={title} onClick={onHamburgerClick} activeClassName="selected" to={to} className="noDecoration">
             <span>{title}</span>
-          </NavLink>
-        );
-      });
-
-      return (
-        <div key={groupName}>
-          <h1>{groupName}</h1>
-          {options}
-        </div>
-      );
-    });
-  };
+          </NavLink>)
+      })
+      return (<div key={name}>
+          <h1>{name}</h1>
+          {subOptions}
+        </div>)
+    })
+  }
 
   const getSubNav = () => {
     let className = "flex-item subNavigation_area";
@@ -54,14 +40,17 @@ const HamburgerSlider: FC<IHamburgerSliderprops> = (
     return (
       <div className={className}>
         <div className="selection-zone stretched">
-          <div className={_className}>{buildHamMenuList()}</div>
+          <div className={_className}>
+            {buildHamburgerMenu()}
+          </div>
         </div>
         <div className="shadow-zone clickArea" onClick={onHamburgerClick}></div>
       </div>
-    );
-  };
+    )
+  }
 
-  return getSubNav();
-};
+  return getSubNav()
 
-export default HamburgerSlider;
+}
+
+export default HamburgerSlider

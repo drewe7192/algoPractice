@@ -15,6 +15,7 @@ declare module "*.gif" {
   export default value
 }
 
+/*
 interface ITileData<enumRef> {
   title: string
   isShowing: boolean
@@ -25,11 +26,14 @@ interface ITileData<enumRef> {
   exact: boolean
   Component: React.FC<{}>
 }
+*/
 
+/*
 interface IGroupingData<enumRef> {
   group: enumRef
   groupName: string
 }
+*/
 
 interface IName {
   first: string
@@ -57,7 +61,6 @@ interface IPerson {
   age: number
   familyName: FamilyName
   fullName: string
-  // toEmployee(this: IPerson, profession: string, salary: number, email: string): IEmployee
 }
 
 interface IEmployee extends IPerson {

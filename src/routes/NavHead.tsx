@@ -1,24 +1,30 @@
-import React, { FC } from "react"
-import { NavLink } from "react-router-dom"
+import React, { FC } from 'react'
+import { NavLink } from 'react-router-dom'
 import house from "./../assets/Home.svg"
 
-interface INavHeader {
+interface INavHeaderProps {
   onHamburgerClick: VoidFunction;
 }
 
-const NavigationHeader: FC<INavHeader> = (props: INavHeader) => {
-  const { onHamburgerClick } = props;
+/**
+ * this is the blue bar placed on top of all pages
+ * @param props in shape of INavHeader
+ */
+const NavigationHeader: FC<INavHeaderProps> = (props: INavHeaderProps) => {
+  const { onHamburgerClick } = props
 
-  // Responsible for making the little house on the top of the Header...
-  // activeClassName="inHomePage"
+  /**
+   * Responsible for making the little house on the top of the Header.
+   */
   const makeHouseNavLink = () => (
-
     <NavLink exact={true} className="flex-item houseLink" to="/">
       <img height="40" className="home" src={house} alt="home page" />
     </NavLink>
-  );
+  )
 
-  // Responsible for making the Hamburger with the 3 lines...
+  /**
+   * Responsible for making the Hamburger with the 3 lines...
+   */
   const makeBurgerButton = () => (
     <div>
       <svg
@@ -41,7 +47,7 @@ const NavigationHeader: FC<INavHeader> = (props: INavHeader) => {
       {makeBurgerButton()}
       {makeHouseNavLink()}
     </div>
-  );
-};
+  )
+}
 
-export default NavigationHeader;
+export default NavigationHeader
