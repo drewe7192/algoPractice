@@ -48,11 +48,6 @@ interface IRouteManagerActions {
     removeOrphanParents(): void
 
     /**
-     * Gets back the IRoutingData for what is our Home Route
-     */
-    getHomeRoute(): IRoutingData
-
-    /**
      * Gets back data for routing in App.tsx
      */
     getRoutingData(): Array<IRoutingData>

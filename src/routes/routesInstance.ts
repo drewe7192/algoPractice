@@ -40,6 +40,10 @@ SortingRouteGroup.addRoute({
     Component: MergeSortPage
 })
 
+// testing out the Orphan thing linke this...
+// const OrphanExample = _managerInstance.addRouteGroup("Orphan")
+
+// doing this before exporting it...
 _managerInstance.removeOrphanParents()
 
 export default _managerInstance
