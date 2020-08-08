@@ -14,10 +14,10 @@
 import { RouteManager } from './routes'
 
 // creating the instance...
-const _managerInstance = RouteManager.getInstance()
+const RoutingData = RouteManager.getInstance()
 
 // adding the following GROUP
-const CollectionsRouteGroup = _managerInstance.addRouteGroup("Collections")
+const CollectionsRouteGroup = RoutingData.addRouteGroup("Collections")
 // adding the child to the Newly Created GROUP
 CollectionsRouteGroup.addRoute({
     isShowing: true, imgSrc: linkedListPng,
@@ -29,7 +29,7 @@ CollectionsRouteGroup.addRoute({
     }
 )
 
-const SortingRouteGroup = _managerInstance.addRouteGroup("Sorting")
+const SortingRouteGroup = RoutingData.addRouteGroup("Sorting")
 SortingRouteGroup.addRoute({
     isShowing: true,
     imgSrc: sortingPng,
@@ -40,10 +40,10 @@ SortingRouteGroup.addRoute({
     Component: MergeSortPage
 })
 
-// testing out the Orphan thing linke this...
+// testing out the Orphan thing linked this...
 // const OrphanExample = _managerInstance.addRouteGroup("Orphan")
 
 // doing this before exporting it...
-_managerInstance.removeOrphanParents()
+RoutingData.removeOrphanParents()
 
-export default _managerInstance
+export default RoutingData
