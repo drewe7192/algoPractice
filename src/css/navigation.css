@@ -1,5 +1,5 @@
 a.houseLink :hover {
-  border: 1px dashed #febd69;
+  border: 1px dashed cadetblue;
 }
 
 .subNavigation_area {
@@ -19,7 +19,7 @@ a.houseLink :hover {
 }
 
 .selection-zone {
-  background: #232f3e;
+  background: #ffffff;
 }
 .selection-zone h1 {
   background: aliceblue;
@@ -27,13 +27,13 @@ a.houseLink :hover {
 }
 
 .selection-zone .display a {
-  color: #febd69;
+  color: rgb(78, 129, 131);
   padding: 20px;
   display: block;
 }
 
 .selection-zone .display a:hover {
-  background: #febd69;
+  background: rgba(95, 158, 160, 0.445);
   color: #232f3e;
 }
 
@@ -75,6 +75,14 @@ a.noDecoration.selected {
 
 .navigation .home {
   cursor: pointer;
+}
+
+svg {
+  width: 40px;
+  height: 40px;
+}
+svg:hover {
+  fill: cadetblue;
 }
 
 .HomePageTile {

@@ -17,9 +17,11 @@ const NavigationHeader: FC<INavHeaderProps> = (props: INavHeaderProps) => {
    * Responsible for making the little house on the top of the Header.
    */
   const makeHouseNavLink = () => (
-    <NavLink exact={true} className="flex-item houseLink" to="/">
-      <img height="40" className="home" src={house} alt="home page" />
-    </NavLink>
+    <div className="svg">
+      <NavLink exact={true} className="flex-item svg" to="/">
+        <img height="40" className="home svg" src={house} alt="home page" />
+      </NavLink>
+    </div>
   );
 
   /**

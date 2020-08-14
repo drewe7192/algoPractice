@@ -15,7 +15,7 @@
 }
 
 .flex-item > .stretched {
-  flex: 1;
+  flex: 0.5;
 }
 
 .flex-item.centered {
