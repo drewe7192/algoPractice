@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
-import { NavLink } from 'react-router-dom'
-import house from "./../assets/Home.svg"
+import React, { FC } from "react";
+import { NavLink } from "react-router-dom";
+import house from "./../assets/Home.svg";
 
 interface INavHeaderProps {
   onHamburgerClick: VoidFunction;
@@ -11,7 +11,7 @@ interface INavHeaderProps {
  * @param props in shape of INavHeader
  */
 const NavigationHeader: FC<INavHeaderProps> = (props: INavHeaderProps) => {
-  const { onHamburgerClick } = props
+  const { onHamburgerClick } = props;
 
   /**
    * Responsible for making the little house on the top of the Header.
@@ -20,7 +20,7 @@ const NavigationHeader: FC<INavHeaderProps> = (props: INavHeaderProps) => {
     <NavLink exact={true} className="flex-item houseLink" to="/">
       <img height="40" className="home" src={house} alt="home page" />
     </NavLink>
-  )
+  );
 
   /**
    * Responsible for making the Hamburger with the 3 lines...
@@ -43,11 +43,14 @@ const NavigationHeader: FC<INavHeaderProps> = (props: INavHeaderProps) => {
   );
 
   return (
-    <div className="navigation">
-      {makeBurgerButton()}
-      {makeHouseNavLink()}
+    <div>
+      <div className="navigation">
+        {makeBurgerButton()}
+        {makeHouseNavLink()}
+      </div>
+      <hr className="blueLine" />
     </div>
-  )
-}
+  );
+};
 
-export default NavigationHeader
+export default NavigationHeader;
