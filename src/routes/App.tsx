@@ -1,11 +1,11 @@
 import React, { FC, useState } from "react";
-
-// NAVIGATION RELATED COMPONENTS
 import NavigationHeader from "../views/NavHead";
+import { NavigationItem } from "../views/NavHead";
 import HamburgerSlider from "../views/HamburgerSlider";
-
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import RoutingData from "./routesInstance";
+import Home from "../assets/Home.svg";
+import { DropDownMenu } from "../views/NavHead";
 
 export const App: FC = () => {
   const [menuIsShown, setMenuShown] = useState<boolean>(false);
@@ -28,7 +28,13 @@ export const App: FC = () => {
         menuIsShown={menuIsShown}
       />
       <div className="flex-item vertical fullDim">
-        <NavigationHeader onHamburgerClick={hamburgerButtonToggle} />
+        {/* <NavigationHeader onHamburgerClick={hamburgerButtonToggle} /> */}
+        <NavigationHeader>
+          <NavigationItem icon="g" />
+          <NavigationItem icon="g">
+            <DropDownMenu />
+          </NavigationItem>
+        </NavigationHeader>
         <div className="main stretched fullDim">
           <Switch>{extractRoutesFromRoutesInfo()}</Switch>
         </div>

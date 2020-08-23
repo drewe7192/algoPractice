@@ -5,7 +5,7 @@
 }
 
 .lobsterText {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   letter-spacing: 10px;
   font-size: 40px;
 }
@@ -138,7 +138,6 @@ body,
   padding: 30px;
   align-items: baseline;
   justify-content: space-around;
-
 }
 
 .ellipsis {
@@ -169,4 +168,26 @@ body,
 
 #homePage {
   background: ghostwhite;
+}
+
+/* //-------------------------------------------------------// */
+:root {
+  --bg: white;
+  --bg-accent: white;
+  --text-color: rgb(0, 0, 0);
+  --nav-size: 60px;
+  --border: 1px solid cadetblue;
+  --border-radius: 8px;
+  --speed: 500ms;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding-top: 2vh;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
 }
