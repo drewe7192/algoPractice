@@ -1,18 +1,25 @@
-type nullable<T> = null | T
+type nullable<T> = null | T;
 
 declare module "*.png" {
   const value: string;
   export default value;
 }
 
-declare module "*.svg" {
-  const value: string
-  export default value
+// declare module "*.svg" {
+//   const value: string
+//   export default value
+// }
+
+declare module "\*.svg" {
+  import React = require("react");
+  export const ReactComponent: React.SFC<React.SVGProps<SVGSVGElement>>;
+  const src: string;
+  export default src;
 }
 
 declare module "*.gif" {
-  const value: string
-  export default value
+  const value: string;
+  export default value;
 }
 
 /*
@@ -36,9 +43,9 @@ interface IGroupingData<enumRef> {
 */
 
 interface IName {
-  first: string
-  last: string
-  middle?: string
+  first: string;
+  last: string;
+  middle?: string;
 }
 
 enum FamilyName {
@@ -51,25 +58,25 @@ enum FamilyName {
 }
 
 interface IPersonName {
-  first: string
-  last: string
-  middle?: string
+  first: string;
+  last: string;
+  middle?: string;
 }
 
 interface IPerson {
-  name: IPersonName
-  age: number
-  familyName: FamilyName
-  fullName: string
+  name: IPersonName;
+  age: number;
+  familyName: FamilyName;
+  fullName: string;
 }
 
 interface IEmployee extends IPerson {
-  salary: number
-  profession: string
-  email: string
+  salary: number;
+  profession: string;
+  email: string;
 }
 
-type EmployeeKeys = keyof Employee
+type EmployeeKeys = keyof Employee;
 
 // PROTOTYPES DECLARED HERE
 interface Array<T> {
@@ -80,9 +87,9 @@ interface Array<T> {
 }
 
 interface Console {
-  prettyLog<T>(fancyObject: T): void
+  prettyLog<T>(fancyObject: T): void;
 }
 
 interface Number {
-  toCurrency: () => string
+  toCurrency: () => string;
 }

@@ -1,42 +1,26 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import NavigationHeader from "../views/NavHead";
 import { NavigationItem } from "../views/NavHead";
-import HamburgerSlider from "../views/HamburgerSlider";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
-import RoutingData from "./routesInstance";
-import Home from "../assets/Home.svg";
+import { HashRouter as Router, Switch } from "react-router-dom";
 import { DropDownMenu } from "../views/NavHead";
+import Home from "../assets/Home.svg";
+import github from "../assets/github.png";
+import Views from "../views/Views";
 
 export const App: FC = () => {
-  const [menuIsShown, setMenuShown] = useState<boolean>(false);
-  const hamburgerButtonToggle = (): void => setMenuShown(!menuIsShown);
-
-  const extractRoutesFromRoutesInfo = () =>
-    RoutingData.getRoutingData().map((r) => {
-      const { exact, Component, to } = r;
-      return (
-        <Route key={to} exact={exact} path={to}>
-          <Component />
-        </Route>
-      );
-    });
-
   return (
     <Router>
-      <HamburgerSlider
-        onHamburgerClick={hamburgerButtonToggle}
-        menuIsShown={menuIsShown}
-      />
       <div className="flex-item vertical fullDim">
-        {/* <NavigationHeader onHamburgerClick={hamburgerButtonToggle} /> */}
         <NavigationHeader>
-          <NavigationItem icon="g" />
-          <NavigationItem icon="g">
+          <NavigationItem icon={Home} />
+          <NavigationItem icon={github}>
             <DropDownMenu />
           </NavigationItem>
         </NavigationHeader>
         <div className="main stretched fullDim">
-          <Switch>{extractRoutesFromRoutesInfo()}</Switch>
+          <Switch>
+            <Views />
+          </Switch>
         </div>
       </div>
     </Router>

@@ -157,13 +157,13 @@ body,
 .noOverflow {
   overflow: hidden;
 }
-.img-wrapper > img {
+.img-wrapper {
   transform: scale(1);
-  transition: all 2s;
-  height: 200px;
+  transition: all 0.5s;
+  height: 20px;
 }
-.img-wrapper > img:hover {
-  transform: scale(1.1);
+.img-wrapper:hover {
+  transform: scale(1.2);
 }
 
 #homePage {

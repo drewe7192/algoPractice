@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import house from "./../assets/Home.svg";
 import { AnyTxtRecord } from "dns";
 import { CSSTransition } from "react-transition-group";
+import Home from "../assets/Home.svg";
+import github from "../assets/github.png";
 
 // interface INavHeaderProps {
 //   onHamburgerClick: VoidFunction;
@@ -17,9 +19,15 @@ export const DropDownMenu = () => {
         className="menu-item"
         onClick={() => props.goToMenu && setactiveMenu(props.goToMenu)}
       >
-        <span className="icon-button">{props.leftIcon}</span>
+        <span className="icon-button">
+          {" "}
+          <img className="img-wrapper" src={props.lefticon} />
+        </span>
         {props.children}
-        <span className="icon-right">{props.rightIcon}</span>
+        <span className="icon-right">
+          {" "}
+          <img className="img-wrapper" src={props.rightIcon} />
+        </span>
       </a>
     );
   };
@@ -34,8 +42,8 @@ export const DropDownMenu = () => {
         <div className="menu">
           <DropDownItem>My Profile</DropDownItem>
           <DropDownItem
-            leftIcon="fgda"
-            rightIcon="fgda"
+            // leftIcon={Home}
+            rightIcon={Home}
             goToMenu="settings"
           ></DropDownItem>
         </div>
@@ -48,7 +56,7 @@ export const DropDownMenu = () => {
       >
         <div className="menu">
           <DropDownItem>My Profile</DropDownItem>
-          <DropDownItem leftIcon="fgda" goToMenu="main"></DropDownItem>
+          <DropDownItem leftIcon={github} goToMenu="main"></DropDownItem>
         </div>
       </CSSTransition>
     </div>
@@ -63,7 +71,7 @@ export const NavigationItem = (props: any) => {
       className="nav-item"
     >
       <a href="#" className="icon-button" onClick={() => setOpen(!open)}>
-        {props.icon}
+        <img className="img-wrapper" src={props.icon} />
       </a>
       {open && props.children}
     </li>
