@@ -5,7 +5,6 @@ import RoutingData from "../routes/routesInstance";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 const extractRoutesFromRoutesInfo = () => {
-  debugger;
   RoutingData.getRoutingData().map((r) => {
     const { exact, Component, to } = r;
     return (

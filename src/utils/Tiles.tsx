@@ -31,7 +31,7 @@ export const Tiles: FC<ITilesProps> = (props: ITilesProps) => {
               borderRadius: "15px",
             }}
           >
-            <div className="img-wrapper noOverflow">
+            <div className="noOverflow">
               {/* <img
                 onMouseOver={(e) => imgMouseHandler(e, gifSrc)}
                 onMouseOut={(e) => imgMouseHandler(e, imgSrc)}

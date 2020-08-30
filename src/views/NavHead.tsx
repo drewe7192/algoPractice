@@ -4,7 +4,8 @@ import house from "./../assets/Home.svg";
 import { AnyTxtRecord } from "dns";
 import { CSSTransition } from "react-transition-group";
 import Home from "../assets/Home.svg";
-import github from "../assets/github.png";
+import arrow from "../assets/arrow2.svg";
+import home from "../assets/Home.svg";
 
 // interface INavHeaderProps {
 //   onHamburgerClick: VoidFunction;
@@ -12,6 +13,12 @@ import github from "../assets/github.png";
 
 export const DropDownMenu = () => {
   const [activeMenu, setactiveMenu] = useState("main");
+  const [menuHeight, setMenuHeight] = useState();
+
+  const calcHeight = (el: any) => {
+    const height = el.ofsetHeight;
+    setMenuHeight(height);
+  };
   const DropDownItem = (props: any) => {
     return (
       <a
@@ -21,7 +28,7 @@ export const DropDownMenu = () => {
       >
         <span className="icon-button">
           {" "}
-          <img className="img-wrapper" src={props.lefticon} />
+          <img className="img-wrapper" src={props.leftIcon} />
         </span>
         {props.children}
         <span className="icon-right">
@@ -32,31 +39,37 @@ export const DropDownMenu = () => {
     );
   };
   return (
-    <div className="dropdown">
+    <div className="dropdown" style={{ height: menuHeight }}>
+      {" "}
       <CSSTransition
         in={activeMenu === "main"}
         unmountOnExit
         timeout={500}
-        className="menu-primary"
+        classNames="menu-primary"
+        onEnter={calcHeight}
       >
         <div className="menu">
-          <DropDownItem>My Profile</DropDownItem>
-          <DropDownItem
-            // leftIcon={Home}
-            rightIcon={Home}
-            goToMenu="settings"
-          ></DropDownItem>
+          <DropDownItem>First Page</DropDownItem>
+          <DropDownItem goToMenu="settings">Settings</DropDownItem>
         </div>
       </CSSTransition>
       <CSSTransition
         in={activeMenu === "settings"}
         unmountOnExit
         timeout={500}
-        className="menu-secondary"
+        classNames="menu-secondary"
       >
         <div className="menu">
-          <DropDownItem>My Profile</DropDownItem>
-          <DropDownItem leftIcon={github} goToMenu="main"></DropDownItem>
+          <DropDownItem leftIcon={arrow} goToMenu="main" />
+
+          <DropDownItem>Second Page</DropDownItem>
+          <DropDownItem>Second Page</DropDownItem>
+          <DropDownItem>Second Page</DropDownItem>
+          <DropDownItem>Second Page</DropDownItem>
+          <DropDownItem>Second Page</DropDownItem>
+          <DropDownItem>Second Page</DropDownItem>
+          <DropDownItem>Second Page</DropDownItem>
+          <DropDownItem>Second Page</DropDownItem>
         </div>
       </CSSTransition>
     </div>
