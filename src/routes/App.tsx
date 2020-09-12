@@ -19,9 +19,7 @@ export const App: FC = () => {
           <NavigationItem icon={Home} />
         </NavigationHeader>
         <div className="main stretched fullDim">
-          <Switch>
-            <Views />
-          </Switch>
+          <Views />
         </div>
       </div>
     </Router>

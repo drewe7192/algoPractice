@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import house from "./../assets/Home.svg";
 import { AnyTxtRecord } from "dns";
 import { CSSTransition } from "react-transition-group";
@@ -61,8 +61,10 @@ export const DropDownMenu = () => {
       >
         <div className="menu">
           <DropDownItem leftIcon={arrow} goToMenu="main" />
+          <Link to="/Level1/Searching/linearSearch">
+            <DropDownItem>Second Page</DropDownItem>
+          </Link>
 
-          <DropDownItem>Second Page</DropDownItem>
           <DropDownItem>Second Page</DropDownItem>
           <DropDownItem>Second Page</DropDownItem>
           <DropDownItem>Second Page</DropDownItem>

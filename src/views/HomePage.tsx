@@ -1,8 +1,9 @@
-import React from "react";
+import React, { FC } from "react";
 import { Tiles } from "../utils/Tiles";
 import Logo from "./../assets/purpose.png";
 
-export default () => (
+interface IHomePage {}
+const HomePage = () => (
   <div className="auto-overflow flex-item fullDim vertical" id="homePage">
     <span className="flex-item centered homeTitle">
       <span>
@@ -20,3 +21,5 @@ export default () => (
     </div>
   </div>
 );
+
+export default HomePage;

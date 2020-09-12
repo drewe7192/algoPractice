@@ -1,49 +1,58 @@
-// Assets
-//  LINKED LIST ASSETS
-    import linkedListPng  from './../assets/LinkedList.png'
-    import linkedListGif  from './../assets/LinkedList.gif'
-//  SORTING ASSETS
-    import sortingPng     from './../assets/sorting.png'
-    import sortingGif     from './../assets/sorting.gif'
-// PAGES
-    // SORTING PAGES
-    import { MergeSortPage } from "./../views/MergeSortPage"
-    // LINKED LIST PAGES
-    import { SLLPage } from "./../views/SLLPage"
+import linkedListPng from "./../assets/LinkedList.png";
+import linkedListGif from "./../assets/LinkedList.gif";
+import sortingPng from "./../assets/sorting.png";
+import sortingGif from "./../assets/sorting.gif";
+import { MergeSortPage } from "./../views/MergeSortPage";
+import { SLLPage } from "./../views/SLLPage";
+import { RouteManager } from "./routes";
+import Homepage from "../views/HomePage";
+import LinearSearch from "../views/LinearSearch";
+const RoutingData = RouteManager.getInstance();
 
-import { RouteManager } from './routes'
+const Level1RouteGroup = RoutingData.addRouteGroup("Level1");
+Level1RouteGroup.addRoute({
+  isShowing: true,
+  imgSrc: linkedListPng,
+  gifSrc: linkedListGif,
+  title: "Searching",
+  to: "/Level1/Searching",
+  exact: true,
+  Component: SLLPage,
+  data: LinearSearch,
+});
+Level1RouteGroup.addRoute({
+  isShowing: true,
+  imgSrc: linkedListPng,
+  gifSrc: linkedListGif,
+  title: "Linear Search",
+  to: "/Level1/Searching/linearSearch",
+  exact: true,
+  Component: Homepage,
+  data: LinearSearch,
+});
+Level1RouteGroup.addRoute({
+  isShowing: true,
+  imgSrc: linkedListPng,
+  gifSrc: linkedListGif,
+  title: "Binary Search",
+  to: "/Level1/Searching/binarySearch",
+  exact: true,
+  Component: SLLPage,
+  data: LinearSearch,
+});
 
-// creating the instance...
-const RoutingData = RouteManager.getInstance()
+const Level2RouteGroup = RoutingData.addRouteGroup("Level2");
+Level2RouteGroup.addRoute({
+  isShowing: true,
+  imgSrc: sortingPng,
+  gifSrc: sortingGif,
+  title: "Merge Sort",
+  to: "/MergeSort",
+  exact: true,
+  Component: MergeSortPage,
+  data: LinearSearch,
+});
 
-// adding the following GROUP
-const CollectionsRouteGroup = RoutingData.addRouteGroup("Collections")
-// adding the child to the Newly Created GROUP
-CollectionsRouteGroup.addRoute({
-    isShowing: true, imgSrc: linkedListPng,
-    gifSrc: linkedListGif,
-    title: 'Singly Linked List',
-    to: '/SLL',
-    exact: true,
-    Component: SLLPage
-    }
-)
+// RoutingData.removeOrphanParents();
 
-const SortingRouteGroup = RoutingData.addRouteGroup("Sorting")
-SortingRouteGroup.addRoute({
-    isShowing: true,
-    imgSrc: sortingPng,
-    gifSrc: sortingGif,
-    title: 'Merge Sort',
-    to: '/MergeSort',
-    exact: true,
-    Component: MergeSortPage
-})
-
-// testing out the Orphan thing linked this...
-// const OrphanExample = _managerInstance.addRouteGroup("Orphan")
-
-// doing this before exporting it...
-RoutingData.removeOrphanParents()
-
-export default RoutingData
+export default RoutingData;
