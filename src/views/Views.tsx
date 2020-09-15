@@ -1,8 +1,10 @@
 import React from "react";
-import { faVirus } from "@fortawesome/free-solid-svg-icons";
-import Homepage from "../views/HomePage";
+
+import Homepage from "./../views/HomePage";
+import ProducePage from "./../views/ProducePage";
+
 import RoutingData from "../routes/routesInstance";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 const extractRoutesFromRoutesInfo = () => {
   RoutingData.getRoutingData().map((r) => {
@@ -18,8 +20,14 @@ const extractRoutesFromRoutesInfo = () => {
 const Views = () => {
   return (
     <div>
-      <Homepage />
-      {/* {extractRoutesFromRoutesInfo()} */}
+      <Route exact={true} path="/">
+        <Homepage />
+      </Route>
+
+      <Route exact={false} path={"/produce/:id"}>
+        <ProducePage />
+      </Route>
+      {extractRoutesFromRoutesInfo()}
     </div>
   );
 };

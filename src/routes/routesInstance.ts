@@ -10,6 +10,7 @@
     import { MergeSortPage } from "./../views/MergeSortPage"
     // LINKED LIST PAGES
     import { SLLPage } from "./../views/SLLPage"
+    import ProducePage from './../views/ProducePage'
 
 import { RouteManager } from './routes'
 
@@ -38,6 +39,16 @@ SortingRouteGroup.addRoute({
     to: '/MergeSort',
     exact: true,
     Component: MergeSortPage
+})
+
+SortingRouteGroup.addRoute({
+    isShowing: true,
+    imgSrc: sortingPng,
+    gifSrc: sortingGif,
+    title: 'Produce',
+    to: "/produce/:id",
+    exact: false,
+    Component: ProducePage
 })
 
 // testing out the Orphan thing linked this...

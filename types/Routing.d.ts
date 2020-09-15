@@ -1,6 +1,6 @@
 interface IRoutingData {
     exact: boolean
-    Component: React.FC
+    Component: any
     to: string
 }
 

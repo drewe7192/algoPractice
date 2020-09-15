@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState, ReactNode } from "react";
 import { PeopleCollection, Person } from "../Containers/MockData";
-import { LinkedList } from "./../utils/dataStructures/SLL";
+import { LinkedList } from './../utils/datastructures/SLL'
 import { FamilyName } from "../enums";
 
 type animatedFunction = () => ISLLActions<IPerson>;

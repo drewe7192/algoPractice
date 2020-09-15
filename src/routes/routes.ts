@@ -52,7 +52,8 @@ export class RouteManager implements IRouteManager, IRouteManagerAttributes, IRo
             } else _newPointer.push(p)
         })
 
-        delete this.routesParents
+        // delete this.routesParents
+
         this.routesParents = _newPointer
         this.count = _newPointer.length
     }
@@ -122,7 +123,7 @@ class Route implements IRouteAttributes
     public gifSrc:      string
     public to:          string
     public exact:       boolean
-    public Component:   React.FC<{}>
+    public Component:   React.FC<any>
     constructor(routeSettings: IRouteAttributes)
     {
         const { title, isShowing, imgSrc, gifSrc, to, exact, Component } = routeSettings
