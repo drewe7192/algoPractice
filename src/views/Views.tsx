@@ -1,9 +1,11 @@
 import React from "react";
-import { faVirus } from "@fortawesome/free-solid-svg-icons";
-import Homepage from "../views/HomePage";
-import RoutingData from "../routes/routesInstance";
+import Homepage from "./../views/HomePage";
+import ProductPage from "./../views/ProductPage"//'./ProductPage'
+// import { faVirus } from "@fortawesome/free-solid-svg-icons";
+// import RoutingData from "../routes/routesInstance";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
+/*
 const extractRoutesFromRoutesInfo = () => {
   RoutingData.getRoutingData().map((r) => {
     const { exact, Component, to } = r;
@@ -14,14 +16,19 @@ const extractRoutesFromRoutesInfo = () => {
     );
   });
 };
+*/
 
 const Views = () => {
   return (
-    <div>
-      <Homepage />
-      {/* {extractRoutesFromRoutesInfo()} */}
-    </div>
-  );
-};
+    <>
+      <Route exact path="/">
+        <Homepage />
+      </Route>
+      <Route path="/products/:id">
+        <ProductPage/>
+      </Route>
+    </>
+  )
+}
 
 export default Views;

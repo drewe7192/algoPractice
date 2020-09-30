@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import NavigationHeader from "../views/NavHead";
 import { NavigationItem } from "../views/NavHead";
 import { DropDownMenu } from "../views/NavHead";
-import Views from "../views/Views";
+import Views from "./../views/Views";
 import { HashRouter as Router, Switch } from "react-router-dom";
 import Home from "../assets/Home.svg";
 import github from "../assets/github.png";
