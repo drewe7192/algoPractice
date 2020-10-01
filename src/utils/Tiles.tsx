@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import RoutingData from "../routes/routesInstance";
+import RoutingData from "./../routes/routesInstance";
 
 interface ITilesProps {}
 

@@ -1,6 +1,5 @@
 import { PeopleCollection } from "./MockData";
-import { LinkedList } from "./../utils/dataStructures/SLL";
-
+import { LinkedList } from './../utils/datastructures/SLL'
 // quick overview of what program can do
 interface IProgramActions {
   SLLCode(): void;

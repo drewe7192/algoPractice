@@ -40,6 +40,17 @@ SortingRouteGroup.addRoute({
     Component: MergeSortPage
 })
 
+const NoGroup = RoutingData.addRouteGroup("Sorting")
+NoGroup.addRoute({
+    isShowing: true,
+    imgSrc: sortingPng,
+    gifSrc: sortingGif,
+    title: 'Products',
+    to: '/products/1234',
+    exact: true,
+    Component: MergeSortPage
+})
+
 // testing out the Orphan thing linked this...
 // const OrphanExample = _managerInstance.addRouteGroup("Orphan")
 

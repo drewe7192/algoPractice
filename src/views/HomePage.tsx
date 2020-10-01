@@ -1,5 +1,5 @@
 import React from "react";
-import { Tiles } from "../utils/Tiles";
+import { Tiles } from "./../utils/Tiles";
 import Logo from "./../assets/purpose.png";
 
 export default () => (
