@@ -1,5 +1,5 @@
 import { fibonacci } from "./fibonacci";
-import { TwoNumberSum } from "../algoExpert/TwoNumberSum";
+import { TwoNumberSum } from "./TwoNumberSum";
 export enum Problems {
   all = 0,
   fib = 1,
